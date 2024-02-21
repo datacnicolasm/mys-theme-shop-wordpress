@@ -1,0 +1,39 @@
+div.site-content main.site-main{
+    ul.products{
+        align-items: stretch;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+
+        li.product{
+
+            align-content: stretch;
+            display: flex;
+            flex: 0 1 100%;
+            margin: 0 0 1rem!important;
+            padding: 0 0.5rem;
+            width: 100%!important;
+
+            @media (min-width: 1068px){
+                flex: 0 1 25%;
+                width: 25%!important;
+            }
+
+            @media (min-width: 668px) and (max-width: 1068px){
+                flex: 0 1 33.33%;
+                width: 33.33%!important;
+            }
+
+            @media (min-width: 468px) and (max-width: 668px){
+                flex: 0 1 50%;
+                width: 50%!important;
+            }
+
+            .item-product-mys{
+                align-items: stretch;
+                display: flex;
+                flex-flow: row wrap;
+            }
+        }
+    }
+}

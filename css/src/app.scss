@@ -1,0 +1,32 @@
+@import './general/header/header.scss';
+@import './home-page/page-home.scss';
+@import './product/product-list.scss';
+@import './general/footer/footer.scss';
+@import './product/product-page.scss';
+@import './product/product-grid.scss';
+@import './blog/blog.scss';
+
+.alpha, h1 {
+    font-size: 1.5rem!important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400!important;
+    letter-spacing: 0!important;
+}
+
+.storefront-breadcrumb{
+    @media (min-width: 768px){
+        margin: 0 0 1.5rem!important;
+        padding: 1rem 0!important;
+    }
+}
+
+:focus:not(select), a:focus {
+    border: none!important;
+    outline: none!important;
+}
+
+.site-content #main header.woocommerce-products-header {
+    padding: 0 0 2rem;
+}

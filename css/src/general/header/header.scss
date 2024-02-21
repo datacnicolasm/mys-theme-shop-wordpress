@@ -1,0 +1,43 @@
+@import './car-shop';
+@import './search-bar';
+@import './logo-header';
+@import './menu-pc.scss';
+@import './menu-phone.scss';
+
+header.header-site{
+    background-color: $azul-primario;
+    margin-bottom: 1rem;
+    padding-top: 0;
+    position: relative;
+
+    @media (min-width: 700px){
+        margin-bottom: 3rem;
+        padding-top: 0;
+        z-index: 999;
+    }
+
+    .header-container{
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        padding: 0;
+        position: relative;
+        width: 95%;
+
+        @media (min-width: 700px){
+            padding: 0 0 20px;
+
+        }
+        @media (min-width: 1040px){
+            align-items: stretch;
+            flex-flow: wrap;
+            max-width: 1200px;
+            padding: 10px 0 0;
+            width: 90%;
+        }
+        @media (min-width: 500px){
+            padding: 0 0 1rem;
+        }
+    }
+}

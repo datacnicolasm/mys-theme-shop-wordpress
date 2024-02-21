@@ -1,0 +1,71 @@
+header.header-site .header-container{
+    .navegacion-marcas{
+        background-color: #a2a2a2;
+        display: none;
+        flex: 0 1 100%;
+        padding: 0 20px;
+        
+        @media (min-width: 700px){
+            display: block;
+            position: absolute;
+            top: calc(100% - 30px);
+            width: 100%;
+        }
+
+        ul{
+            align-items: stretch;
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            margin: 0;
+
+            li.item-menu-categorias-header{
+                padding: 10px;                
+
+                ul.sub-menu-item-categorias-header{
+                    align-items: stretch;
+                    background-color: #fff;
+                    border: 1px solid #a2a2a2;
+                    border-top: 5px solid #bb0f2f;
+                    display: none;
+                    flex-flow: wrap;
+                    justify-content: flex-start;
+                    left: 0;
+                    list-style: none;
+                    margin: 0;
+                    padding: 10px 20px;
+                    position: absolute;
+                    top: 100%;
+                    width: 100%;
+                    z-index: 999;
+
+                    >li{
+                        flex: 0 1 25%;
+
+                        div.item-menu-marcas-linea{
+                            padding: 0 20px;
+
+                            div.img-linea{
+                                display: flex;
+                                justify-content: center;
+                            }
+
+                            div.title-linea{
+                                margin: 10px 0;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+
+            li.item-menu-categorias-header:hover{
+                background-color: #bb0f2f;
+
+                ul.sub-menu-item-categorias-header{
+                    display:flex
+                }
+            }
+        }
+    }
+}

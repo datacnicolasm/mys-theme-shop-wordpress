@@ -1,0 +1,148 @@
+header.header-site .header-container{
+    .menu-navegacion-phone{
+
+        background-color: #1e2f49;
+        display: flex;
+        flex: 0 0 57px;
+        justify-content: center;
+
+        @media (min-width: 600px){
+            display: none;
+        }
+
+        .hamburger{
+            background-color: transparent;
+            border: 0;
+            color: inherit;
+            cursor: pointer;
+            display: inline-block;
+            font: inherit;
+            font-size: inherit;
+            font-family: inherit;
+            margin: 0;
+            overflow: visible;
+            padding: 5px 5px 0;
+            text-transform: none;
+
+            .hamburger-box{
+                display: inline-block;
+                height: 24px;
+                position: relative;
+                width: 40px;
+
+                .hamburger-inner, .hamburger-inner:before, .hamburger-inner:after{
+                    background-color: #fff;
+                    border-radius: 4px;
+                    height: 4px;
+                    position: absolute;
+                    width: 40px;
+                }
+                
+                .hamburger-inner:before, .hamburger-inner:after{
+                    content: "";
+                    display: block;
+                }
+
+                .hamburger-inner:after{
+                    top: -20px;
+                    bottom: -10px;
+                }
+
+                .hamburger-inner:before{
+                    top: -10px;
+                }
+
+                .hamburger-inner{
+                    bottom: 0;
+                    top: auto;
+                    display: block;
+                    margin-top: -2px;
+                }
+            }
+        }
+    }
+
+    .nav-phone-navegacion{
+
+        background-color: #1e2f49;
+        left: 0;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        z-index: 999;
+        display: none;
+
+        ul#menu-menu-principal-tienda-phone{
+            border-top: 3px solid #bb0f2f;
+            list-style: none;
+            margin: 0;
+
+            li.menu-item{
+                background-color: #1e2f49;
+
+                ul.sub-menu-item{
+                    display: none;
+                    list-style: none;
+                    margin: 0;
+
+                    li{
+                        background-color: #bb0f2f;
+
+                        a{
+                            display: flex;
+                            justify-content: flex-start;
+                            padding: 10px 15px;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                >a{
+                    display: flex;
+                    justify-content: flex-start;
+                    padding: 10px 15px;
+                    width: 100%;
+                    color: #fff;
+                }
+            }
+
+            li.item-parent{
+                div.span-item-parent{
+                    align-items: center;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0.6rem 1rem;
+                    transition: all 1s ease-in-out;
+                    width: 100%;
+                    cursor: pointer;
+
+                    span{
+                        color: #fff;
+                    }
+                }
+
+                div.span-item-parent:after{
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    color: #fff;
+                    content: "\f107";
+                    display: inline-block;
+                    font-family: Font Awesome\ 5 Free;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-variant: normal;
+                    font-weight: 400;
+                    font-weight: 900;
+                    line-height: inherit;
+                    line-height: 1;
+                    margin: 0;
+                    vertical-align: baseline;
+                }
+            }
+        }
+
+        @media (min-width: 600px){
+            display: none;
+        }
+    }
+}

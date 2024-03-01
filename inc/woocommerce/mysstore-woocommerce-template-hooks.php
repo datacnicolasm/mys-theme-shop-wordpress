@@ -1,9 +1,7 @@
 <?php
 
 /**
-
  * Template hooks del tema relacionados con Woocommerce
-
  */
 
 require 'mysstore-woocommerce-template-functions.php'; // Importacion de funciones de woocommerce

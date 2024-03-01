@@ -165,6 +165,14 @@
                         padding: 1rem;
                     }
                 }
+
+                form.variations_form{
+                    .single_variation_wrap{
+                        .woocommerce-variation{
+                            display: none;
+                        }
+                    }
+                }
             }
         }
 

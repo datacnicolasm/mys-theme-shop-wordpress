@@ -8,11 +8,21 @@ function mys_scripts_styles()
     // Script general
     wp_enqueue_script('hammerJS', "https://hammerjs.github.io/dist/hammer.min.js", array(), '2.0.8');
     wp_enqueue_script('scriptGeneral', get_stylesheet_directory_uri() . '/js/build/app.min.js', array('jquery', 'jquery-ui-tabs'), '1.0.0');
+
+    wp_localize_script(
+        'scriptGeneral',
+        'ajax_object',
+        [
+            'url' => admin_url('admin-ajax.php'),
+            'token' => wp_create_nonce('api_token')
+        ]
+    );
 }
 add_action('wp_enqueue_scripts', 'mys_scripts_styles');
 
 require 'inc/mysstore-template-hooks.php';
 require 'inc/woocommerce/mysstore-woocommerce-template-hooks.php';
+require_once 'inc/mysstore-api-wp.php';
 /**
  * Clases de widgets
  */
@@ -43,7 +53,7 @@ class info_contacto_widget extends WP_Widget
         // Before widget tag
         echo $args['before_widget'];
         // Widget
-?>
+    ?>
         <div class="comp-footer">
             <div class="ext title-footer">
                 <p><?php echo $title ?></p>
@@ -100,6 +110,7 @@ class info_contacto_widget extends WP_Widget
         return $instance;
     }
 };
+
 class button_place_widget extends WP_Widget
 {
     function __construct()
@@ -155,6 +166,7 @@ class button_place_widget extends WP_Widget
         return $instance;
     }
 };
+
 class horarios_widget extends WP_Widget
 {
     function __construct()
@@ -231,6 +243,7 @@ class horarios_widget extends WP_Widget
         return $instance;
     }
 };
+
 class medios_pago_widget extends WP_Widget
 {
     function __construct()
@@ -280,6 +293,7 @@ class medios_pago_widget extends WP_Widget
         echo '<p>' . __('No es mosible modificar esta seccion', 'mysecommerce') . '</p>';
     }
 };
+
 class catalogos_widget extends WP_Widget
 {
     function __construct()

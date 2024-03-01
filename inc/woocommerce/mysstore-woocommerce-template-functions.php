@@ -17,7 +17,7 @@ if (!function_exists('mysstore_cart_link')) {
     function mysstore_cart_link()
     {
 
-    ?>
+?>
 
         <a class="carrito-compras-link" href="<?php echo esc_url(wc_get_cart_url()); ?>">
 
@@ -519,89 +519,89 @@ if (!function_exists('mysstore_before_product_item_product')) {
             <div class="content-item-product">
             <?php
         }
-}
-
-if (!function_exists('mysstore_after_product_item_product')) {
-
-    /**
-     * Cierre de item producto
-     */
-    function mysstore_after_product_item_product()
-    {
-        ?>
-        </div>
-    </div>
-<?php
     }
-}
 
-if (!function_exists('mysstore_template_media_product')) {
+    if (!function_exists('mysstore_after_product_item_product')) {
 
-    /**
-     * Template de imagen del producto
-     */
-    function mysstore_template_media_product()
-    {
-        global $product;
+        /**
+         * Cierre de item producto
+         */
+        function mysstore_after_product_item_product()
+        {
+            ?>
+            </div>
+        </div>
+    <?php
+        }
+    }
+
+    if (!function_exists('mysstore_template_media_product')) {
+
+        /**
+         * Template de imagen del producto
+         */
+        function mysstore_template_media_product()
+        {
+            global $product;
 
     ?>
-    <div class="media-product">
-        <a class="product-thumbnail-link" href="<?php echo get_permalink($product->get_id()); ?>">
-            <?php echo woocommerce_get_product_thumbnail() ?>
-        </a>
-        <div class="container-tags-product">
+        <div class="media-product">
+            <a class="product-thumbnail-link" href="<?php echo get_permalink($product->get_id()); ?>">
+                <?php echo woocommerce_get_product_thumbnail() ?>
+            </a>
+            <div class="container-tags-product">
 
-            <?php if ($product->is_on_sale() && ($product->is_type('simple') || $product->is_type('variable'))) {
-                echo '<div class="tag-product container-onsale-span"><span>';
-                echo esc_html('OFERTA!');
-                echo '</span></div>';
-            }
+                <?php if ($product->is_on_sale() && ($product->is_type('simple') || $product->is_type('variable'))) {
+                    echo '<div class="tag-product container-onsale-span"><span>';
+                    echo esc_html('OFERTA!');
+                    echo '</span></div>';
+                }
 
-            if( get_field('tipo_producto')[0] == 'normal' && $product->is_in_stock()){            
-                echo '<div class="tag-product stock-disponible"><span>';
-                echo esc_html('DISPONIBLE');
-                echo '</span></div>';
-            }
+                if (get_field('tipo_producto')[0] == 'normal' && $product->is_in_stock()) {
+                    echo '<div class="tag-product stock-disponible"><span>';
+                    echo esc_html('DISPONIBLE');
+                    echo '</span></div>';
+                }
 
-            $log_nuevo = get_field("producto_nuevo");
-            if (isset($log_nuevo[0]) && $log_nuevo[0] == 'Nuevo' && $product->is_in_stock() && ($product->is_type('simple') || $product->is_type('variable'))) {
-                echo '<div class="tag-product container-new-span"><span>';
-                echo esc_html('NUEVO!');
-                echo '</span></div>';
-            }
+                $log_nuevo = get_field("producto_nuevo");
+                if (isset($log_nuevo[0]) && $log_nuevo[0] == 'Nuevo' && $product->is_in_stock() && ($product->is_type('simple') || $product->is_type('variable'))) {
+                    echo '<div class="tag-product container-new-span"><span>';
+                    echo esc_html('NUEVO!');
+                    echo '</span></div>';
+                }
 
-            $log_importacion = get_field("en_importacion");
-            if (isset($log_importacion[0]) && $log_importacion[0] == 'importacion' && ($product->is_type('simple') || $product->is_type('variable'))) {
-                echo '<div class="tag-product container-importacion"><span>';
-                echo esc_html('MUY PRONTO');
-                echo '</span></div>';
-            }
-        
-            if( get_field('tipo_producto')[0] == 'normal' && !$product->is_in_stock()){            
-                echo '<div class="tag-product stock-agotado"><span>';
-                echo esc_html('AGOTADO');
-                echo '</span></div>';
-            }
-            ?>
+                $log_importacion = get_field("en_importacion");
+                if (isset($log_importacion[0]) && $log_importacion[0] == 'importacion' && ($product->is_type('simple') || $product->is_type('variable'))) {
+                    echo '<div class="tag-product container-importacion"><span>';
+                    echo esc_html('MUY PRONTO');
+                    echo '</span></div>';
+                }
+
+                if (get_field('tipo_producto')[0] == 'normal' && !$product->is_in_stock()) {
+                    echo '<div class="tag-product stock-agotado"><span>';
+                    echo esc_html('AGOTADO');
+                    echo '</span></div>';
+                }
+                ?>
+            </div>
         </div>
-    </div>
     <?php
+        }
     }
-}
 
-if (!function_exists('mysstore_template_info_product')) {
+    if (!function_exists('mysstore_template_info_product')) {
 
-    /**
-     * Template de informacion del producto
-     */
-    function mysstore_template_info_product()
-    {
-        global $product; ?>
+        /**
+         * Template de informacion del producto
+         */
+        function mysstore_template_info_product()
+        {
+            global $product; ?>
         <div class="info-product">
             <div class="sect-info-content">
                 <h2 class="product-nombre-referencia">
                     <a class="product-thumbnail-link" href="<?php echo get_permalink($product->get_id()); ?>">
-                        <?php echo substr($product->get_name(),0,55); ?>
+                        <?php echo substr($product->get_name(), 0, 55); ?>
                     </a>
                 </h2>
                 <?php
@@ -610,459 +610,467 @@ if (!function_exists('mysstore_template_info_product')) {
                     echo 'REF: ' . $product->get_sku();
                     echo '</span>';
                 };
-                if (!isset(get_field("en_importacion")[0])){
-                    ?>
+                if (!isset(get_field("en_importacion")[0])) {
+                ?>
                     <span class="precio-referencia">
                         <?php mysstore_content_item_price(); ?>
                     </span>
-                    <?php
-                }?>
+                <?php
+                } ?>
             </div>
             <div class="actions-product">
                 <div class="btn-add">
                     <?php
                     if (null !== get_field('tipo_producto') && get_field('tipo_producto')[0] == 'normal' && !isset(get_field("en_importacion")[0])) {
                         echo woocommerce_template_loop_add_to_cart();
-                    } elseif (get_field("en_importacion")[0] = "en_importacion"){
-                        ?>
-                            <a href="<?php echo get_permalink(); ?>" class="button product_type_variable add_to_cart_button"rel="nofollow">M&aacute;s informaci&oacute;n</a>
-                        <?php
+                    } elseif (get_field("en_importacion")[0] = "en_importacion") {
+                    ?>
+                        <a href="<?php echo get_permalink(); ?>" class="button product_type_variable add_to_cart_button" rel="nofollow">M&aacute;s informaci&oacute;n</a>
+                    <?php
                     }
                     ?>
                 </div>
             </div>
         </div>
-        <?php
+    <?php
+        }
     }
-}
 
-if (!function_exists('mysstore_content_list_product_tienda')) {
-    /**
-     * Funcion de consulta para generar lista de productos
-     */
-    function mysstore_content_list_product_tienda($args_function)
-    {
+    if (!function_exists('mysstore_content_list_product_tienda')) {
+        /**
+         * Funcion de consulta para generar lista de productos
+         */
+        function mysstore_content_list_product_tienda($args_function)
+        {
 
-        $num_productos = get_field($args_function['field']);
+            $num_productos = get_field($args_function['field']);
 
-        // Condicional para consulta a base de datos de ultimos productos
-        if ($args_function['products'] == 'ultimos') :
-            $args = array(
-                'post_type'         =>  'product',
-                'post_status'       =>  'publish',
-                'posts_per_page'    =>  $num_productos,
-                'orderby'           =>  'date',
-                'order'             =>  'DESC'
-            );
-        endif;
+            // Condicional para consulta a base de datos de ultimos productos
+            if ($args_function['products'] == 'ultimos') :
+                $args = array(
+                    'post_type'         =>  'product',
+                    'post_status'       =>  'publish',
+                    'posts_per_page'    =>  $num_productos,
+                    'orderby'           =>  'date',
+                    'order'             =>  'DESC'
+                );
+            endif;
 
-        // Condicional para consulta a base de datos de productos en descuento
-        if ($args_function['products'] == 'ofertas') :
-            $args = array(
-                'post_type'         =>  'product',
-                'post_status'       =>  'publish',
-                'posts_per_page'    =>  $num_productos,
-                'orderby'           =>  'date',
-                'order'             =>  'DESC',
-                'meta_query'     => array(
-                    'relation' => 'OR',
-                    array( // Productos de tipo simple
-                        'key'           => '_sale_price',
-                        'value'         => 0,
-                        'compare'       => '>',
-                        'type'          => 'numeric'
-                    ),
-                    array( // Productos de tipo variable
-                        'key'           => '_min_variation_sale_price',
-                        'value'         => 0,
-                        'compare'       => '>',
-                        'type'          => 'numeric'
+            // Condicional para consulta a base de datos de productos en descuento
+            if ($args_function['products'] == 'ofertas') :
+                $args = array(
+                    'post_type'         =>  'product',
+                    'post_status'       =>  'publish',
+                    'posts_per_page'    =>  $num_productos,
+                    'orderby'           =>  'date',
+                    'order'             =>  'DESC',
+                    'meta_query'     => array(
+                        'relation' => 'OR',
+                        array( // Productos de tipo simple
+                            'key'           => '_sale_price',
+                            'value'         => 0,
+                            'compare'       => '>',
+                            'type'          => 'numeric'
+                        ),
+                        array( // Productos de tipo variable
+                            'key'           => '_min_variation_sale_price',
+                            'value'         => 0,
+                            'compare'       => '>',
+                            'type'          => 'numeric'
+                        )
                     )
-                )
-            );
-        endif;
+                );
+            endif;
 
-        // Condicional para consulta a base de datos de productos destacados
-        if ($args_function['products'] == 'destacados') :
+            // Condicional para consulta a base de datos de productos destacados
+            if ($args_function['products'] == 'destacados') :
 
-            $meta_query = WC()->query->get_meta_query();
-            $tax_query   = WC()->query->get_tax_query();
-            $tax_query[] = array(
-                'taxonomy' => 'product_visibility',
-                'field'    => 'name',
-                'terms'    => 'featured',
-                'operator' => 'IN',
-            );
-            $args = array(
-                'post_type'         =>  'product',
-                'post_status'       =>  'publish',
-                'posts_per_page'    =>  $num_productos,
-                'orderby'           =>  'date',
-                'order'             =>  'DESC',
-                'meta_query'        =>  $meta_query,
-                'tax_query'         =>  $tax_query,
-            );
-        endif;
+                $meta_query = WC()->query->get_meta_query();
+                $tax_query   = WC()->query->get_tax_query();
+                $tax_query[] = array(
+                    'taxonomy' => 'product_visibility',
+                    'field'    => 'name',
+                    'terms'    => 'featured',
+                    'operator' => 'IN',
+                );
+                $args = array(
+                    'post_type'         =>  'product',
+                    'post_status'       =>  'publish',
+                    'posts_per_page'    =>  $num_productos,
+                    'orderby'           =>  'date',
+                    'order'             =>  'DESC',
+                    'meta_query'        =>  $meta_query,
+                    'tax_query'         =>  $tax_query,
+                );
+            endif;
 
-        $loop = new WP_Query($args);
+            $loop = new WP_Query($args);
 
-        if ($loop->have_posts()) : while ($loop->have_posts()) : $loop->the_post();
+            if ($loop->have_posts()) : while ($loop->have_posts()) : $loop->the_post();
+
+                    global $product;
+
+                    do_action('mysstore_template_item_product');
+
+                endwhile;
+
+            endif;
+
+            wp_reset_postdata();
+        }
+    }
+
+    /**
+     * Funciones de la pagina de producto
+     */
+
+    if (!function_exists('mysstore_single_add_to_cart')) {
+        /**
+         * 
+         */
+        function mysstore_single_add_to_cart()
+        {
+            global $product;
+
+            if (get_field('tipo_producto')[0] == 'normal' && !isset(get_field("en_importacion")[0])) {
+                woocommerce_template_single_add_to_cart();
+            }
+        }
+    }
+
+    if (!function_exists('mysstore_single_product_primary_open')) {
+
+        /**
+         * 
+         */
+        function mysstore_single_product_primary_open()
+        {
+    ?>
+        <div class="content-primary-product">
+        <?php
+        }
+    }
+
+    if (!function_exists('mysstore_single_product_primary_close')) {
+
+        /**
+         * 
+         */
+        function mysstore_single_product_primary_close()
+        {
+        ?>
+        </div>
+    <?php
+        }
+    }
+
+    if (!function_exists('mysstore_single_product_primary_media')) {
+
+        /**
+         * 
+         */
+        function mysstore_single_product_primary_media()
+        {
+    ?>
+        <div class="media-product-page">
+            <div class="container-tags-product">
+                <?php
 
                 global $product;
 
-                do_action('mysstore_template_item_product');
+                if ($product->is_on_sale() && ($product->is_type('simple') || $product->is_type('variable'))) {
+                    echo '<div class="tag-product container-onsale-span"><span>';
+                    echo esc_html('OFERTA!');
+                    echo '</span></div>';
+                }
+                if (isset(get_field("producto_nuevo")[0]) && get_field("producto_nuevo")[0] == "Nuevo" && $product->is_in_stock() && ($product->is_type('simple') || $product->is_type('variable'))) {
+                    echo '<div class="tag-product container-new-span"><span>';
+                    echo esc_html('NUEVO!');
+                    echo '</span></div>';
+                }
 
-            endwhile;
-
-        endif;
-
-        wp_reset_postdata();
-    }
-}
-
-/**
- * Funciones de la pagina de producto
- */
-
-if (!function_exists('mysstore_single_add_to_cart')) {
-    /**
-     * 
-     */
-    function mysstore_single_add_to_cart()
-    {
-        global $product;
-
-        if (get_field('tipo_producto')[0] == 'normal' && !isset(get_field("en_importacion")[0])) {
-            woocommerce_template_single_add_to_cart();
+                if (isset(get_field("en_importacion")[0]) && get_field("en_importacion")[0] == 'importacion' && ($product->is_type('simple') || $product->is_type('variable'))) {
+                    echo '<div class="tag-product container-importacion"><span>';
+                    echo esc_html('MUY PRONTO');
+                    echo '</span></div>';
+                }
+                ?>
+            </div>
+            <?php woocommerce_show_product_images(); ?>
+        </div>
+    <?php
         }
     }
-}
 
-if (!function_exists('mysstore_single_product_primary_open')) {
+    if (!function_exists('mysstore_single_product_primary_info_open')) {
 
-    /**
-     * 
-     */
-    function mysstore_single_product_primary_open()
-    {
-        ?>
-        <div class="content-primary-product">
-        <?php
-    }
-}
+        /**
+         * 
+         */
+        function mysstore_single_product_primary_info_open()
+        {
+    
+            ?><div class="info-main-product-page">
 
-if (!function_exists('mysstore_single_product_primary_close')) {
-
-    /**
-     * 
-     */
-    function mysstore_single_product_primary_close()
-    {
-    ?>
-    </div>
-    <?php
-    }
-}
-
-if (!function_exists('mysstore_single_product_primary_media')) {
-
-    /**
-     * 
-     */
-    function mysstore_single_product_primary_media(){
-    ?>
-    <div class="media-product-page">
-        <div class="container-tags-product">
             <?php
 
             global $product;
 
-            if ($product->is_on_sale() && ($product->is_type('simple') || $product->is_type('variable'))) {
-                echo '<div class="tag-product container-onsale-span"><span>';
-                echo esc_html('OFERTA!');
-                echo '</span></div>';
+            if ($product->is_type('variable')) {
+                echo '<span id="data-wc" data-productwc="' . $product->get_id() . '" style="display:none">data</span>';
             }
-            if (isset(get_field("producto_nuevo")[0]) && get_field("producto_nuevo")[0] == "Nuevo" && $product->is_in_stock() && ($product->is_type('simple') || $product->is_type('variable'))) {
-                echo '<div class="tag-product container-new-span"><span>';
-                echo esc_html('NUEVO!');
-                echo '</span></div>';
-            }
+        }
+    }
 
-            if (isset(get_field("en_importacion")[0]) && get_field("en_importacion")[0] == 'importacion' && ($product->is_type('simple') || $product->is_type('variable'))) {
-                echo '<div class="tag-product container-importacion"><span>';
-                echo esc_html('MUY PRONTO');
-                echo '</span></div>';
-            }
+    if (!function_exists('mysstore_single_product_primary_info_close')) {
+
+        /**
+         * 
+         */
+        function mysstore_single_product_primary_info_close()
+        {
             ?>
         </div>
-        <?php woocommerce_show_product_images(); ?>
-    </div>
-    <?php
-    }
-}
-
-if (!function_exists('mysstore_single_product_primary_info_open')) {
-
-    /**
-     * 
-     */
-    function mysstore_single_product_primary_info_open()
-    {
-    ?>
-    <div class="info-main-product-page">
-    <?php
-    }
-}
-
-if (!function_exists('mysstore_single_product_primary_info_close')) {
-
-    /**
-     * 
-     */
-    function mysstore_single_product_primary_info_close()
-    {
-    ?>
-    </div>
-    <?php
-    }
-}
-
-if (!function_exists('mysstore_custom_get_stock_html')) {
-
-    /**
-     * 
-     */
-    function mysstore_custom_get_stock_html($stock)
-    {
-        return "";
-    }
-}
-
-add_filter('woocommerce_get_stock_html', 'mysstore_custom_get_stock_html');
-
-if (!function_exists('mysstore_single_product_price')) {
-
-    /**
-     * 
-     */
-    function mysstore_single_product_price()
-    {
-        global $product;
-
-        if (get_field('tipo_producto')[0] == 'servicio' || $product->is_type('variable')) {
-
-            $price = apply_filters('woocommerce_empty_price_html', '', $product);
-
-        } elseif ($product->is_on_sale() && $product->is_type('simple')) {
-
-            $regular_price = $product->get_regular_price();
-
-            $sale_price = is_numeric($product->get_sale_price()) ? $product->get_sale_price() : 0;
-
-            $price = '<div class="price-product">';
-
-            $price .= '<div class="precio-oferta">';
-
-            $price .= '<div class="regular-price-sale">';
-
-            $price .= '<span class="regular-price"><del>' . wc_price($regular_price) . '</del></span>';
-
-            $price .= '<span class="portj-price">' . number_format((($regular_price - $sale_price) / $regular_price) * 100, 0) . '%</span>';
-
-            $price .= '</div>';
-
-            $price .= '<div class="sale-price-product">';
-
-            $price .= wc_price($sale_price);
-
-            $price .= '</div>';
-
-            $price .= '</div>';
-
-            $price .= '</div>';
-
-        } elseif (!empty(get_field("en_importacion")) && null !== get_field("en_importacion")) {
-
-            $price = '<div class="price-product"></div>';
-
-        } else {
-
-            $price = '<div class="price-product">';
-
-            $price .= wc_price(wc_get_price_to_display($product)) . $product->get_price_suffix();
-
-            $price .= '</div>';
-        }
-
-        echo $price;
-    }
-}
-
-if (!function_exists('mysstore_single_product_sku')) {
-
-    /**
-     * 
-     */
-    function mysstore_single_product_sku()
-    {
-        global $product;
-
-        if (get_field('tipo_producto')[0] == 'normal') {
-            echo '<p class="product-sku">';
-            echo '<span>';
-            echo '<strong>Referencia:</strong> ' . $product->get_sku();
-            echo '</span>';
-            echo '</p>';
-        }
-    }
-}
-
-if (!function_exists('mysstore_single_product_marca')) {
-
-    /**
-     * 
-     */
-    function mysstore_single_product_marca()
-    {
-        global $product;
-        $marca = get_the_terms($product->get_id(), 'marcas') ? get_the_terms($product->get_id(), 'marcas')[0] : null;
-        
-        if ( !is_null($marca) ) {
-            
-            echo '<p class="product-marca">';
-            echo '<span>';
-            echo '<strong>Marca:</strong> ';
-            echo '<a href="' . get_term_link($marca->term_id, 'marcas') . '" target="_blank">' . $marca->name . '</a>';
-            echo '</span>';
-            echo '</p>';
-        }else{
-            echo '<p class="product-marca">';
-            echo '</p>';
-        }
-    }
-}
-
-if (!function_exists('mysstore_single_product_stock_tag')) {
-    /**
-     * Funcion de stock del producto
-     */
-    function mysstore_single_product_stock_tag()
-    {
-        global $product;
-
-        if (get_field('tipo_producto')[0] == 'normal' && $product->is_type('simple') && null == get_field("en_importacion")) {
-
-            if ($product->get_manage_stock() && $product->is_in_stock() && $product->get_stock_quantity() > 0) {
-            ?>
-            <div class="tag-stock-product">
-                <span class="disponible">DISPONIBLE</span>
-            </div>
-            <?php
-            } else {
-            ?>
-            <div class="tag-stock-product">
-                <span class="agotado">AGOTADO</span>
-            </div>
         <?php
+        }
+    }
+
+    if (!function_exists('mysstore_custom_get_stock_html')) {
+
+        /**
+         * 
+         */
+        function mysstore_custom_get_stock_html($stock)
+        {
+            return "";
+        }
+    }
+
+    add_filter('woocommerce_get_stock_html', 'mysstore_custom_get_stock_html');
+
+    if (!function_exists('mysstore_single_product_price')) {
+
+        /**
+         * 
+         */
+        function mysstore_single_product_price()
+        {
+            global $product;
+
+            if (get_field('tipo_producto')[0] == 'servicio' || $product->is_type('variable')) {
+
+                $price = apply_filters('woocommerce_empty_price_html', '', $product);
+
+            } elseif ($product->is_on_sale() && $product->is_type('simple')) {
+
+                $regular_price = $product->get_regular_price();
+
+                $sale_price = is_numeric($product->get_sale_price()) ? $product->get_sale_price() : 0;
+
+                $price = '<div class="price-product">';
+
+                $price .= '<div class="precio-oferta">';
+
+                $price .= '<div class="regular-price-sale">';
+
+                $price .= '<span class="regular-price"><del>' . wc_price($regular_price) . '</del></span>';
+
+                $price .= '<span class="portj-price">' . number_format((($regular_price - $sale_price) / $regular_price) * 100, 0) . '%</span>';
+
+                $price .= '</div>';
+
+                $price .= '<div class="sale-price-product">';
+
+                $price .= wc_price($sale_price);
+
+                $price .= '</div>';
+
+                $price .= '</div>';
+
+                $price .= '</div>';
+            } elseif (!empty(get_field("en_importacion")) && null !== get_field("en_importacion")) {
+
+                $price = '<div class="price-product"></div>';
+            } else {
+
+                $price = '<div class="price-product">';
+
+                $price .= wc_price(wc_get_price_to_display($product)) . $product->get_price_suffix();
+
+                $price .= '</div>';
+            }
+
+            echo $price;
+        }
+    }
+
+    if (!function_exists('mysstore_single_product_sku')) {
+
+        /**
+         * 
+         */
+        function mysstore_single_product_sku()
+        {
+            global $product;
+
+            if (get_field('tipo_producto')[0] == 'normal' && $product->is_type('simple')) {
+                echo '<p class="product-sku">';
+                echo '<span>';
+                echo '<strong>Referencia:</strong> ' . $product->get_sku();
+                echo '</span>';
+                echo '</p>';
             }
         }
     }
-}
 
-if (!function_exists('mysstore_single_product_import_note')) {
-    /**
-     * Funcion de nota sobre importacion del producto
-     */
-    function mysstore_single_product_import_note()
-    {
-        global $product;
+    if (!function_exists('mysstore_single_product_marca')) {
 
-        if (null !== get_field("en_importacion") && !empty(get_field("en_importacion"))) {
+        /**
+         * 
+         */
+        function mysstore_single_product_marca()
+        {
+            global $product;
+            $marca = get_the_terms($product->get_id(), 'marcas') ? get_the_terms($product->get_id(), 'marcas')[0] : null;
 
-            if (get_field("en_importacion")[0] == 'importacion'){
-                ?>
+            if (!is_null($marca)) {
+
+                echo '<p class="product-marca">';
+                echo '<span>';
+                echo '<strong>Marca:</strong> ';
+                echo '<a href="' . get_term_link($marca->term_id, 'marcas') . '" target="_blank">' . $marca->name . '</a>';
+                echo '</span>';
+                echo '</p>';
+            } else {
+                echo '<p class="product-marca">';
+                echo '</p>';
+            }
+        }
+    }
+
+    if (!function_exists('mysstore_single_product_stock_tag')) {
+        /**
+         * Funcion de stock del producto
+         */
+        function mysstore_single_product_stock_tag()
+        {
+            global $product;
+
+            if ($product->is_type('variable')) {
+                echo '<p class="product-sku"></p>';
+                echo '<div class="tag-stock-product"></div>';
+                echo '<div class="price-product"></div>';
+            }
+
+            if (get_field('tipo_producto')[0] == 'normal' && $product->is_type('simple') && null == get_field("en_importacion")) {
+
+                if ($product->get_manage_stock() && $product->is_in_stock() && $product->get_stock_quantity() > 0) {
+
+                    echo '<div class="tag-stock-product">';
+                    echo '<span class="disponible">DISPONIBLE</span>';
+                    echo '</div>';
+                } else {
+                    echo '<div class="tag-stock-product">';
+                    echo '<span class="agotado">AGOTADO</span>';
+                    echo '</div>';
+                }
+            }
+        }
+    }
+
+    if (!function_exists('mysstore_single_product_import_note')) {
+        /**
+         * Funcion de nota sobre importacion del producto
+         */
+        function mysstore_single_product_import_note()
+        {
+            global $product;
+
+            if (null !== get_field("en_importacion") && !empty(get_field("en_importacion"))) {
+
+                if (get_field("en_importacion")[0] == 'importacion') {
+        ?>
                 <div class="nota-product">
                     <div class="info-note">
                         Por el momento este producto no est&aacute; disponible, pero llegar&aacute; muy pronto.
                     </div>
                 </div>
-                <?php
+            <?php
+                }
             }
-
         }
     }
-}
 
-if (!function_exists('mysstore_single_product_tabs')) {
+    if (!function_exists('mysstore_single_product_tabs')) {
 
-    /**
-     * 
-     */
-    function mysstore_single_product_tabs()
-    {
-        if (get_field('tipo_producto')[0] == 'normal') {
-    ?>
-        <div class="product-tabs-info">
-            <div id="tabs">
-                <ul>
-                    <li><a href="#tabs-1">Detalles</a></li>
-                    <?php
-                    if (isset(get_field("manual")['ID'])) {
-                    ?> <li><a href="#tabs-2">Manuales</a></li> <?php
+        /**
+         * 
+         */
+        function mysstore_single_product_tabs()
+        {
+            if (get_field('tipo_producto')[0] == 'normal') {
+            ?>
+            <div class="product-tabs-info">
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#tabs-1">Detalles</a></li>
+                        <?php
+                        if (isset(get_field("manual")['ID'])) {
+                        ?> <li><a href="#tabs-2">Manuales</a></li> <?php
                                                                 }
                                                                     ?>
-                </ul>
-                <div id="tabs-1">
+                    </ul>
+                    <div id="tabs-1">
+                        <?php woocommerce_template_single_excerpt(); ?>
+                    </div>
+                    <?php
+                    if (isset(get_field("manual")['ID'])) {
+                    ?>
+                        <div id="tabs-2">
+                            <a href="<?php echo get_field("manual")["url"]; ?>" target="_blank">
+                                <i class="fas fa-file-pdf"></i>
+                                <span class="manual">Instrucciones del producto en PDF</span>
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+        <?php
+            }
+        }
+    }
+
+    if (!function_exists('mysstore_single_summary_servicio')) {
+
+        /**
+         * 
+         */
+        function mysstore_single_summary_servicio()
+        {
+            if (get_field('tipo_producto')[0] !== 'normal') {
+        ?>
+            <div class="summary-servicio-section">
+                <div class="tab-summary-tag">
+                    <div>
+                        <span>Detalles</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="content-summary">
                     <?php woocommerce_template_single_excerpt(); ?>
                 </div>
-                <?php
-                if (isset(get_field("manual")['ID'])) {
-                ?>
-                    <div id="tabs-2">
-                        <a href="<?php echo get_field("manual")["url"]; ?>" target="_blank">
-                            <i class="fas fa-file-pdf"></i>
-                            <span class="manual">Instrucciones del producto en PDF</span>
-                        </a>
-                    </div>
-                <?php
+            </div><?php
                 }
-                ?>
-            </div>
-        </div>
-    <?php
+            }
         }
-    }
-}
 
-if (!function_exists('mysstore_single_summary_servicio')) {
+        if (!function_exists('')) {
 
-    /**
-     * 
-     */
-    function mysstore_single_summary_servicio()
-    {
-        if (get_field('tipo_producto')[0] !== 'normal') {
-        ?>
-        <div class="summary-servicio-section">
-            <div class="tab-summary-tag">
-                <div>
-                    <span>Detalles</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-            </div>
-            <div class="content-summary">
-                <?php woocommerce_template_single_excerpt(); ?>
-            </div>
-        </div><?php
+            /**
+
+             * 
+
+             */
         }
-    }
-}
-
-if (!function_exists('')) {
-
-    /**
-
-        * 
-
-        */
-}

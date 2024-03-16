@@ -57,15 +57,11 @@ add_action( 'mysstore_footer_content_ecommerce', 'mysstore_footer_creditos', 35 
 
  */
 
-add_action( 'mysstore_inicio_ecommerce', 'mysstore_ultimos_posts_blog', 50 ); // Funcion obtener post de blog
-
 add_action( 'mysstore_inicio_ecommerce', 'mysstore_get_the_content_page', 60 ); // Funcion obtener contenido de pagina de editor WP
 
 add_action( 'mysstore_inicio_ecommerce', 'mysstore_inicio_marcas_partners', 70 ); // Funcion obtener inocos de marcas
 
 add_action( 'mysstore_inicio_ecommerce', 'mysstore_add_slider_comercial', 10 ); // Funcion obtener avisos de slider
-
-add_action( 'mysstore_page_entradas_nav', 'mysstore_paging_nav', 10 );
 
 /**
 

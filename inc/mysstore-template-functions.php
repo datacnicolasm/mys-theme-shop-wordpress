@@ -781,11 +781,8 @@ if ( ! function_exists( 'mystore_header_open_container_menu_cart' ) ) {
 if ( ! function_exists( 'mystore_header_close_container_menu_cart' ) ) {
 
     /**
-
      * 
-
      */
-
     function mystore_header_close_container_menu_cart(){
 
         ?>
@@ -799,19 +796,14 @@ if ( ! function_exists( 'mystore_header_close_container_menu_cart' ) ) {
 }
 
 /**
-
  * Funciones del footer
-
  */
 
 if ( ! function_exists( 'mysstore_footer_politicas' ) ) {
 
     /**
-
      * 
-
      */
-
     function mysstore_footer_politicas(){
 
         ?>
@@ -851,11 +843,8 @@ if ( ! function_exists( 'mysstore_footer_politicas' ) ) {
 if ( ! function_exists( 'mysstore_footer_creditos' ) ) {
 
     /**
-
      * 
-
      */
-
     function mysstore_footer_creditos(){
 
         ?>
@@ -875,11 +864,8 @@ if ( ! function_exists( 'mysstore_footer_creditos' ) ) {
 if ( ! function_exists( 'mysstore_footer_open_widget' ) ) {
 
     /**
-
      * 
-
      */
-
     function mysstore_footer_open_widget(){
 
         ?>
@@ -897,11 +883,8 @@ if ( ! function_exists( 'mysstore_footer_open_widget' ) ) {
 if ( ! function_exists( 'mysstore_footer_close_widget' ) ) {
 
     /**
-
      * 
-
      */
-
     function mysstore_footer_close_widget(){
 
         ?>
@@ -917,9 +900,7 @@ if ( ! function_exists( 'mysstore_footer_close_widget' ) ) {
 if ( ! function_exists( 'mysstore_footer_widgets' ) ) {
 
     /**
-
      * 
-
      */
 
     function mysstore_footer_widgets() {
@@ -999,11 +980,8 @@ if ( ! function_exists( 'mysstore_footer_widgets' ) ) {
 if ( ! function_exists( 'mysstore_footer_menu_redes_sociales' ) ) {
 
     /**
-
      * 
-
      */
-
     function mysstore_footer_menu_redes_sociales(){
 
         ?>
@@ -1052,11 +1030,8 @@ if ( ! function_exists( 'mysstore_footer_menu_redes_sociales' ) ) {
 if ( ! function_exists( 'mysstore_footer_button_top' ) ) {
 
     /**
-
      * Funcion para boton top 
-
      */
-
     function mysstore_footer_button_top(){
 
         ?>
@@ -1262,151 +1237,6 @@ if ( ! function_exists( 'mysstore_get_the_content_page' ) ) {
     }
 
 }
-
-if ( ! function_exists( 'mysstore_ultimos_posts_blog' ) ) {
-
-    /**
-
-     * Funcion para obtener ultimos posts de blog
-
-     */
-
-    function mysstore_ultimos_posts_blog(){
-
-        $num_posts = get_field( "cantidad_ultimos_posts" );
-
-        $args = array(
-
-            'posts_per_page' => $num_posts,
-
-            'orderby' => 'date',
-
-            'order' => 'desc'
-
-        );
-
-        $posts = new WP_Query($args);
-
-        if($posts):
-
-            ?>
-
-            <section class="ultimos-posts-mysstore section-productos-inicio-ecommerce">
-
-                <div class="titulo-section-inicio">
-
-                    <h3>
-
-                    <?php
-
-                    $titulo = get_field( "titulo_ultimos_posts" ); 
-
-                    echo $titulo;
-
-                    ?>
-
-                    </h3>
-
-                </div>
-
-                <div class="posts-items">
-
-                    <ul>
-
-                        <?php
-
-                        while($posts->have_posts()): $posts->the_post();
-
-                            ?>
-
-                            <li class="add_class_scroll post-item post-<?php echo esc_attr( the_ID() ); ?> on_scroll_show">
-
-                                <a href="<?php echo the_permalink(); ?>">
-
-                                    <div class="content-post">
-
-                                        <div class="img-post">
-
-                                            <?php echo the_post_thumbnail('medium_large'); ?>
-
-                                        </div>
-
-                                        <div class="title-post">
-
-                                            <h2><?php echo esc_html( the_title() ); ?></h2>
-
-                                        </div>
-
-                                        <div class="resumen-post">
-
-                                            <?php echo the_excerpt(); ?>
-
-                                        </div>
-
-                                    </div>
-
-                                </a>
-
-                            </li>
-
-                            <?php
-
-                        endwhile;
-
-                        ?>  
-
-                    </ul>
-
-                </div>
-
-                <div class="link-page-blog">
-
-                    <button>
-
-                        <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">VER MAS</a>
-
-                    </button>
-
-                </div>
-
-            </section>
-
-            <?php
-
-        endif;
-
-    }
-
-}
-
-if ( ! function_exists( 'mysstore_paging_nav' ) ) {
-
-	/**
-
-	 * Mostrar el navegador de posts.
-
-	 */
-
-	function mysstore_paging_nav() {
-
-		$args = array(
-
-			'type'      => 'list',
-
-			'next_text' => 'Siguiente',
-
-            'prev_text' => 'Anterior',
-
-		);
-
-
-
-        the_posts_pagination( $args );
-
-	}
-
-}
-
 /**
 
  * Funciones para landing page template

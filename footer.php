@@ -16,7 +16,7 @@
 			 * Function theme mysstore_footer_content_ecommerce
 			 *
 			 * @hooked mysstore_footer_open_widget         - 5
-			 * @hooked storefront_footer_widgets           - 10
+			 * @hooked mysstore_footer_widgets             - 10
 			 * @hooked mysstore_footer_close_widget        - 15
 			 * @hooked mysstore_footer_menu_redes_sociales - 20
 			 * @hooked mysstore_footer_button_top          - 25

@@ -2,7 +2,10 @@ import sliderShop from './inc/sliderShop';
 import sliderProducts from './inc/sliderProducts';
 import setProduct from './inc/listProduct';
 import cartShop from './inc/cartHeader';
-import menuPhone from './inc/navPhone'
+import menuPhone from './inc/navPhone';
+import './filtros/main';
+import './inc/whats-app';
+
 
 jQuery(document).ready(function ($) {
 
@@ -10,6 +13,8 @@ jQuery(document).ready(function ($) {
     sliderProducts('.productos-nuevos .carrusel-productos-mys')
     sliderProducts('.productos-oferta .carrusel-productos-mys')
     sliderProducts('.productos-destacados .carrusel-productos-mys')
+    sliderProducts('.productos-inicio-fila-1 .carrusel-productos-mys')
+    sliderProducts('.productos-inicio-fila-2 .carrusel-productos-mys')
     setProduct();
     cartShop();
     menuPhone();
@@ -85,5 +90,36 @@ jQuery(document).ready(function ($) {
         }
     })
 
+    // Filtros
+    $("#aplicar-filtro-precio").on("click", function(event, element){
+        // Obtener la URL base del navegador
+        const baseURL = window.location.origin + window.location.pathname;
+        // Obtener los parámetros de la URL
+        const queryString = window.location.search;
+        // Crear un objeto URLSearchParams
+        const urlParams = new URLSearchParams(queryString);
+
+        var desde_precio = $('#price-min').val().replace(/\./g, '');
+        var hasta_precio = $('#price-max').val().replace(/\./g, '');
+
+        if(urlParams.has('price-min') && urlParams.has('price-max')){
+            urlParams.set('price-min', desde_precio);
+            urlParams.set('price-max', hasta_precio);
+        }else{
+            urlParams.append('price-min', desde_precio);
+            urlParams.append('price-max', hasta_precio);
+        }
+
+        console.log('urlParams', urlParams)
+
+        //Construir la URL completa
+        const newURL = `${baseURL}?${urlParams.toString()}`;
+
+        //Redirigir al usuario a la nueva URL
+        window.location.href = newURL;
+
+    })
+
 });
+
 

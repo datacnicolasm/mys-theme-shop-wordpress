@@ -1,25 +1,18 @@
 <?php
 
 /**
-
  * Template functions del tema
-
  */
-
 /**
-
  * Funciones del header
-
  */
-
-if ( ! function_exists( 'mysstore_header_container_open' ) ) {
-
+if (!function_exists('mysstore_header_container_open')) {
     /**
      * Apertura de etiqueta header
      */
-
-    function mysstore_header_container_open(){
-        ?>
+    function mysstore_header_container_open()
+    {
+    ?>
 
         <div class="header-container">
 
@@ -27,24 +20,25 @@ if ( ! function_exists( 'mysstore_header_container_open' ) ) {
     }
 }
 
-if ( ! function_exists( 'mysstore_header_comercial_sect' ) ) {
+if (!function_exists('mysstore_header_comercial_sect')) {
 
     /**
      * Apertura de etiqueta header
      */
 
-    function mysstore_header_comercial_sect(){
+    function mysstore_header_comercial_sect()
+    {
         ?>
 
-        <div class="header-comercial-sect">
-            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ab, accusantium deleniti reiciendis, laudantium necessit</h4>
-        </div>
+            <div class="header-comercial-sect">
+                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ab, accusantium deleniti reiciendis, laudantium necessit</h4>
+            </div>
 
         <?php
     }
 }
 
-if ( ! function_exists( 'mysstore_header_logo' ) ) {
+if (!function_exists('mysstore_header_logo')) {
 
     /**
 
@@ -52,71 +46,58 @@ if ( ! function_exists( 'mysstore_header_logo' ) ) {
 
      */
 
-    function mysstore_header_logo(){
+    function mysstore_header_logo()
+    {
 
         ?>
 
-        <div class="site-branding-shop">
+            <div class="site-branding-shop">
 
-            <?php echo get_custom_logo(); ?>
-
-        </div>
-
-        <?php
-
-    }
-
-}
-
-if ( ! function_exists( 'mysstore_header_buscador' ) ) {
-
-	/**
-
-	 * Buscador de productos
-
-	 */
-
-	function mysstore_header_buscador() {
-
-        ?>
-
-        <div class="container-buscador-cart">
-
-            <div class="buscador-productos">
-
-                <?php the_widget( 'WC_Widget_Product_Search', 'title=' ); ?>
+                <?php echo get_custom_logo(); ?>
 
             </div>
 
         <?php
 
-	}
-
+    }
 }
 
-if ( ! function_exists( 'mysstore_theme_get_nav' ) ) {
+if (!function_exists('mysstore_header_buscador')) {
+    /**
+     * Buscador de productos
+     */
+    function mysstore_header_buscador()
+    {
+        ?><div class="container-buscador-cart">
+            <div class="buscador-productos">
+                <?php the_widget('WC_Widget_Product_Search', 'title='); ?>
+            </div><?php
+    }
+}
 
-    function mysstore_theme_get_nav($theme_location){
+if (!function_exists('mysstore_theme_get_nav')) {
 
-        $nav_menus = get_theme_mod( 'nav_menu_locations' );
+    function mysstore_theme_get_nav($theme_location)
+    {
 
-        foreach ($nav_menus as $key => $value):
+        $nav_menus = get_theme_mod('nav_menu_locations');
 
-            if ($key == $theme_location):
+        foreach ($nav_menus as $key => $value) :
+
+            if ($key == $theme_location) :
 
                 return $value;
 
             endif;
 
         endforeach;
-
     }
-
 }
 
-if ( ! function_exists( 'mysstore_get_categories_product' ) ) {
+if (!function_exists('mysstore_get_categories_product')) {
 
-    function mysstore_get_categories_product($id) {
+    function mysstore_get_categories_product($id)
+    {
 
         $return_cats = get_categories(array(
 
@@ -141,240 +122,239 @@ if ( ! function_exists( 'mysstore_get_categories_product' ) ) {
         ));
 
         return $return_cats;
-
     }
-
 }
 
-if ( ! function_exists( 'mysstore_menu_principal_navegacion' ) ) {
+if (!function_exists('mysstore_menu_principal_navegacion')) {
 
     /**
 
-     * Menu de navegación principal
+        * Menu de navegación principal
 
-     */
+        */
 
-    function mysstore_menu_principal_navegacion(){
+    function mysstore_menu_principal_navegacion()
+    {
 
         ?>
 
             <div id='navegacion-principal' class="menu-navegacion-principal" role="navigation">
 
-            <?php
+                <?php
 
-            /* Obteniendo los items del menú */
-            $terms_data_by = wp_get_nav_menu_items(get_term(mysstore_theme_get_nav('primary')));
+                /* Obteniendo los items del menú */
+                $terms_data_by = wp_get_nav_menu_items(get_term(mysstore_theme_get_nav('primary')));
 
-            ?>
+                ?>
 
                 <nav class="menu-menu-principal-tienda">
 
                     <ul id="menu-menu-principal-tienda" class="nav-menu-list-items">
 
-            <?php
+                        <?php
 
-            /* Array vacio para adicionar los id de los items del menu en orden jerarquico */
-            $id_items = array();
+                        /* Array vacio para adicionar los id de los items del menu en orden jerarquico */
+                        $id_items = array();
 
-            /* Array vacio para adicionar los items completos en orden jerarquico */
-            $menu_nav_items = array();
+                        /* Array vacio para adicionar los items completos en orden jerarquico */
+                        $menu_nav_items = array();
 
-            /* Iteracion de items del menu */
+                        /* Iteracion de items del menu */
 
-            foreach ( $terms_data_by as $value ):
+                        foreach ($terms_data_by as $value) :
 
-                $item_nav = get_object_vars($value);
+                            $item_nav = get_object_vars($value);
 
-                /* Validacion si el item de menu es de nivel superior */
+                            /* Validacion si el item de menu es de nivel superior */
 
-                if( $value->menu_item_parent == "0" ):
+                            if ($value->menu_item_parent == "0") :
 
-                    /* Se agrega el id del item en el array vacio de items */
+                                /* Se agrega el id del item en el array vacio de items */
 
-                    array_push( $id_items, $value->ID );
+                                array_push($id_items, $value->ID);
 
-                    /* Se agrega en el array vacio de items el id, item, array vacio, array vacio */
+                                /* Se agrega en el array vacio de items el id, item, array vacio, array vacio */
 
-                    array_push( $menu_nav_items, array( $value->ID, $item_nav, array( ), array( ) ) );
+                                array_push($menu_nav_items, array($value->ID, $item_nav, array(), array()));
 
-                    /* Validacion de item de menu tipo categoria woocommerce */
+                                /* Validacion de item de menu tipo categoria woocommerce */
 
-                    if ( $value->object == "product_cat" ):
+                                if ($value->object == "product_cat") :
 
-                        /* Funcion para obtener subcategorias del item tipo categoria */
+                                    /* Funcion para obtener subcategorias del item tipo categoria */
 
-                        $cats = mysstore_get_categories_product( $value->object_id );
+                                    $cats = mysstore_get_categories_product($value->object_id);
 
-                        /* Si se obtuvieron subcategorias */
+                                    /* Si se obtuvieron subcategorias */
 
-                        if( count($cats) > 0 ):
+                                    if (count($cats) > 0) :
 
-                            /* Buscando el index del item en el array de id's */
+                                        /* Buscando el index del item en el array de id's */
 
-                            $index = array_search( $value->ID, $id_items );
+                                        $index = array_search($value->ID, $id_items);
 
-                            /* Iteracion de subcategorias para incluirlas en array vacio de items de menu */
+                                        /* Iteracion de subcategorias para incluirlas en array vacio de items de menu */
 
-                            foreach ($cats as $category):
+                                        foreach ($cats as $category) :
 
-                                array_push($menu_nav_items[$index][3], $category);
+                                            array_push($menu_nav_items[$index][3], $category);
 
-                            endforeach;
+                                        endforeach;
 
-                        endif;
+                                    endif;
 
-                    endif;
+                                endif;
 
-                endif;
+                            endif;
 
-                if($item_nav["menu_item_parent"] !== "0"):
+                            if ($item_nav["menu_item_parent"] !== "0") :
 
-                    $index = array_search($item_nav["menu_item_parent"], $id_items);
+                                $index = array_search($item_nav["menu_item_parent"], $id_items);
 
-                    array_push($menu_nav_items[$index][2], $item_nav);
+                                array_push($menu_nav_items[$index][2], $item_nav);
 
-                endif;
+                            endif;
 
-            endforeach;
+                        endforeach;
 
-            /* Iteracion de array construido de items del menu organizados */
-            $last_key = array_key_last($menu_nav_items);
-            foreach ($menu_nav_items as $index => $nav_item_menu):
+                        /* Iteracion de array construido de items del menu organizados */
+                        $last_key = array_key_last($menu_nav_items);
+                        foreach ($menu_nav_items as $index => $nav_item_menu) :
 
-                /* Variable de clase para items superiores */
+                            /* Variable de clase para items superiores */
 
-                $class_parent_item = "";
+                            $class_parent_item = "";
 
-                /* Condicional para para dar valor a la variable anterior */
+                            /* Condicional para para dar valor a la variable anterior */
 
-                if(count($nav_item_menu[2]) > 0 || count($nav_item_menu[3]) > 0):
+                            if (count($nav_item_menu[2]) > 0 || count($nav_item_menu[3]) > 0) :
 
-                    $class_parent_item = "menu-item-parent";
+                                $class_parent_item = "menu-item-parent";
 
-                endif;
+                            endif;
 
-                /* Condicional de ultimo item del menu */
-                if($last_key == $index):
+                            /* Condicional de ultimo item del menu */
+                            if ($last_key == $index) :
 
-                    $class_parent_item .= "last-item-menu";
+                                $class_parent_item .= "last-item-menu";
 
-                endif;
+                            endif;
 
-                /* Condicional para items categorias woocommerce superiores */
-                if(count($nav_item_menu[3]) > 0):
+                            /* Condicional para items categorias woocommerce superiores */
+                            if (count($nav_item_menu[3]) > 0) :
 
-                    $class_parent_item .= " menu-item-parent-cat-products";
+                                $class_parent_item .= " menu-item-parent-cat-products";
 
-                else:
+                            else :
 
-                    $class_parent_item .= " no-item-marcas";
+                                $class_parent_item .= " no-item-marcas";
 
-                endif;
-                ?>
-
-                <!-- Cada item de menu aqui -->
-
-                <li id="menu-item-<?php echo $nav_item_menu[1]["ID"]; ?>" class="menu-item <?php echo $class_parent_item; ?>">
-
-                    <!-- Link a cada item de menu -->
-
-                    <a href="<?php echo $nav_item_menu[1]["url"]; ?>"><?php echo $nav_item_menu[1]["title"]; ?></a>
-
-                    <?php
-
-                    /* Condicional de submenu */
-
-                    if ( count($nav_item_menu[2]) > 0 ):
-
+                            endif;
                         ?>
 
-                        <!-- Submenu de item aqui -->
+                            <!-- Cada item de menu aqui -->
 
-                        <ul class="sub-menu-item">
+                            <li id="menu-item-<?php echo $nav_item_menu[1]["ID"]; ?>" class="menu-item <?php echo $class_parent_item; ?>">
 
-                            <?php
+                                <!-- Link a cada item de menu -->
 
-                            /* Iteracion de items del submenu */
-
-                            foreach($nav_item_menu[2] as $sub_nav_item):
-
-                                ?>
-
-                                <li class="item-sub-menu">
-
-                                    <!-- Link a item de submenu -->
-
-                                    <a href="<?php echo $sub_nav_item["url"]; ?>"><?php echo $sub_nav_item["title"]; ?></a>
-
-                                </li>
+                                <a href="<?php echo $nav_item_menu[1]["url"]; ?>"><?php echo $nav_item_menu[1]["title"]; ?></a>
 
                                 <?php
 
-                            endforeach;
+                                /* Condicional de submenu */
 
-                            ?>
-
-                        </ul>
-
-                        <?php    
-
-                    endif;
-
-                    /* Condicional de submenu de categorias */
-
-                    if ( count($nav_item_menu[3]) > 0 ):
-
-                        /* Condicional para categorias */
-
-                        ?>
-
-                        <!-- Submenu de categorias -->
-
-                        <ul class="sub-menu-item">
-
-                            <?php
-
-                            /* Iteracion de cada item del submenu */
-
-                            foreach($nav_item_menu[3] as $sub_nav_item):
+                                if (count($nav_item_menu[2]) > 0) :
 
                                 ?>
 
-                                <li class="item-sub-menu">
+                                    <!-- Submenu de item aqui -->
 
-                                    <?php
+                                    <ul class="sub-menu-item">
 
-                                    /* Obtener link de la categoria */
+                                        <?php
 
-                                    $cat_link = get_category_link($sub_nav_item->term_id)
+                                        /* Iteracion de items del submenu */
 
-                                    ?>
+                                        foreach ($nav_item_menu[2] as $sub_nav_item) :
 
-                                    <a href="<?php echo $cat_link; ?>"><?php echo $sub_nav_item->name; ?></a>
+                                        ?>
 
-                                </li>
+                                            <li class="item-sub-menu">
+
+                                                <!-- Link a item de submenu -->
+
+                                                <a href="<?php echo $sub_nav_item["url"]; ?>"><?php echo $sub_nav_item["title"]; ?></a>
+
+                                            </li>
+
+                                        <?php
+
+                                        endforeach;
+
+                                        ?>
+
+                                    </ul>
 
                                 <?php
 
-                            endforeach;
+                                endif;
 
-                            ?>
+                                /* Condicional de submenu de categorias */
 
-                        </ul>
+                                if (count($nav_item_menu[3]) > 0) :
+
+                                    /* Condicional para categorias */
+
+                                ?>
+
+                                    <!-- Submenu de categorias -->
+
+                                    <ul class="sub-menu-item">
+
+                                        <?php
+
+                                        /* Iteracion de cada item del submenu */
+
+                                        foreach ($nav_item_menu[3] as $sub_nav_item) :
+
+                                        ?>
+
+                                            <li class="item-sub-menu">
+
+                                                <?php
+
+                                                /* Obtener link de la categoria */
+
+                                                $cat_link = get_category_link($sub_nav_item->term_id)
+
+                                                ?>
+
+                                                <a href="<?php echo $cat_link; ?>"><?php echo $sub_nav_item->name; ?></a>
+
+                                            </li>
+
+                                        <?php
+
+                                        endforeach;
+
+                                        ?>
+
+                                    </ul>
+
+                                <?php
+
+                                endif;
+
+                                ?>
+
+                            </li>
 
                         <?php
 
-                    endif;
+                        endforeach;
 
-                    ?>
-
-                </li>
-
-                <?php
-
-            endforeach;
-
-            ?>
+                        ?>
 
                     </ul>
 
@@ -385,40 +365,40 @@ if ( ! function_exists( 'mysstore_menu_principal_navegacion' ) ) {
         <?php
 
     }
-
 }
 
-if ( ! function_exists( 'mysstore_header_container_close' ) ) {
+if (!function_exists('mysstore_header_container_close')) {
 
     /**
 
-     * Cierre de etiqueta header
+        * Cierre de etiqueta header
 
-     */
+        */
 
-    function mysstore_header_container_close(){
+    function mysstore_header_container_close()
+    {
 
         ?>
 
         </div>
 
-        <?php
+    <?php
 
     }
-
 }
 
-if ( ! function_exists( 'mysstore_menu_navegacion_phone' ) ) {
+if (!function_exists('mysstore_menu_navegacion_phone')) {
 
     /**
 
-     * 
+        * 
 
-     */
+        */
 
-    function mysstore_menu_navegacion_phone(){
+    function mysstore_menu_navegacion_phone()
+    {
 
-        ?>
+    ?>
 
         <div class="menu-navegacion-phone">
 
@@ -444,289 +424,135 @@ if ( ! function_exists( 'mysstore_menu_navegacion_phone' ) ) {
 
             ?>
 
-                <nav class="menu-menu-principal-tienda-container-phone">
+            <nav class="menu-menu-principal-tienda-container-phone">
 
-                    <ul id="menu-menu-principal-tienda-phone" class="nav-menu-list-items-phone">
+                <ul id="menu-menu-principal-tienda-phone" class="nav-menu-list-items-phone">
 
-            <?php
+                    <?php
 
-            /* Array vacio para adicionar los id de los items del menu en orden jerarquico */
+                    /* Array vacio para adicionar los id de los items del menu en orden jerarquico */
 
-            $id_items = array();
+                    $id_items = array();
 
-            /* Array vacio para adicionar los items completos en orden jerarquico */
+                    /* Array vacio para adicionar los items completos en orden jerarquico */
 
-            $menu_nav_items = array();
+                    $menu_nav_items = array();
 
-            /* Iteracion de items del menu */
+                    /* Iteracion de items del menu */
 
-            foreach ( $terms_data_by as $value ):
+                    foreach ($terms_data_by as $value) :
 
-                $item_nav = get_object_vars($value);
+                        $item_nav = get_object_vars($value);
 
-                /* Validacion si el item de menu es de nivel superior */
+                        /* Validacion si el item de menu es de nivel superior */
 
-                if( $value->menu_item_parent == "0" ):
+                        if ($value->menu_item_parent == "0") :
 
-                    /* Se agrega el id del item en el array vacio de items */
+                            /* Se agrega el id del item en el array vacio de items */
 
-                    array_push( $id_items, $value->ID );
+                            array_push($id_items, $value->ID);
 
-                    /* Se agrega en el array vacio de items el id, item, array vacio */
+                            /* Se agrega en el array vacio de items el id, item, array vacio */
 
-                    array_push( $menu_nav_items, array( $value->ID, $item_nav, array( ), array( ) ) );
+                            array_push($menu_nav_items, array($value->ID, $item_nav, array(), array()));
 
-                    /* Validacion de item de menu tipo categoria woocommerce */
+                            /* Validacion de item de menu tipo categoria woocommerce */
 
-                    if ( $value->object == "product_cat" ):
+                            if ($value->object == "product_cat") :
 
-                        /* Funcion para obtener subcategorias del item tipo categoria */
+                                /* Funcion para obtener subcategorias del item tipo categoria */
 
-                        $cats = mysstore_get_categories_product( $value->object_id );
+                                $cats = mysstore_get_categories_product($value->object_id);
 
-                        /* Si se obtuvieron subcategorias */
+                                /* Si se obtuvieron subcategorias */
 
-                        if( count($cats) > 0 ):
+                                if (count($cats) > 0) :
 
-                            /* Buscando el index del item en el array de id's */
+                                    /* Buscando el index del item en el array de id's */
 
-                            $index = array_search( $value->ID, $id_items );
+                                    $index = array_search($value->ID, $id_items);
 
-                            /* Iteracion de subcategorias para incluirlas en array vacio de items de menu */
+                                    /* Iteracion de subcategorias para incluirlas en array vacio de items de menu */
 
-                            foreach ($cats as $category):
+                                    foreach ($cats as $category) :
 
-                                array_push($menu_nav_items[$index][3], $category);
+                                        array_push($menu_nav_items[$index][3], $category);
 
-                            endforeach;
+                                    endforeach;
+
+                                endif;
+
+                            endif;
 
                         endif;
 
-                    endif;
+                        if ($item_nav["menu_item_parent"] !== "0") :
 
-                endif;
+                            $index = array_search($item_nav["menu_item_parent"], $id_items);
 
-                if($item_nav["menu_item_parent"] !== "0"):
+                            array_push($menu_nav_items[$index][2], $item_nav);
 
-                    $index = array_search($item_nav["menu_item_parent"], $id_items);
+                        endif;
 
-                    array_push($menu_nav_items[$index][2], $item_nav);
+                    endforeach;
 
-                endif;
+                    foreach ($menu_nav_items as $item_nav) :
 
-            endforeach;
-
-            foreach ( $menu_nav_items as $item_nav ):
-
-                if ( count($item_nav[2]) == 0 && count($item_nav[3]) == 0 ):
+                        if (count($item_nav[2]) == 0 && count($item_nav[3]) == 0) :
 
                     ?>
 
-                    <li id="item-<?php echo esc_attr( $item_nav[1]["ID"] ); ?>" class="menu-item item-no-child">
+                            <li id="item-<?php echo esc_attr($item_nav[1]["ID"]); ?>" class="menu-item item-no-child">
 
-                        <a href="<?php echo esc_attr( $item_nav[1]["url"] ); ?>"><?php echo esc_html( $item_nav[1]["title"] ); ?></a>
+                                <a href="<?php echo esc_attr($item_nav[1]["url"]); ?>"><?php echo esc_html($item_nav[1]["title"]); ?></a>
 
-                    </li>
+                            </li>
 
-                    <?php
+                        <?php
 
-                else:
-
-                    ?>
-
-                    <li id="item-<?php echo esc_attr( $item_nav[1]["ID"] ); ?>" class="menu-item item-parent">
-
-                        <div class="span-item-parent">
-
-                            <span><?php echo esc_html( $item_nav[1]["title"] ); ?></span>
-
-                        </div>
-
-                        <ul class="sub-menu-item">
-
-                            <?php
-
-                            foreach($item_nav[2] as $sub_item):
-
-                                ?>
-
-                                <li id="item-<?php echo esc_attr( $sub_item["ID"] ); ?>" class="menu-item item-no-child">
-
-                                    <a href="<?php echo esc_attr( $sub_item["url"] ); ?>"><?php echo esc_html( $sub_item["title"] ); ?></a>
-
-                                </li>
-
-                                <?php
-
-                            endforeach;
-
-                            foreach($item_nav[3] as $sub_item):
-
-                                $cat_link = get_category_link($sub_item->term_id);
-
-                                ?>
-
-                                <li id="item-<?php echo esc_attr( $sub_item->term_id ); ?>" class="menu-item item-no-child">
-
-                                    <a href="<?php echo esc_attr( $cat_link ); ?>"><?php echo esc_html( $sub_item->name ); ?></a>
-
-                                </li>
-
-                                <?php
-
-                            endforeach;
-
-                            ?>
-
-                        </ul>
-
-                    </li>
-
-                    <?php
-
-                endif;
-
-            endforeach;
-
-            ?>
-
-                    </ul>
-
-                </nav>
-
-        </div>
-
-        <?php
-
-    }
-
-}
-
-if ( ! function_exists( 'mysstore_header_logos_marcas' ) ) {
-
-    /**
-
-     * 
-
-     */
-
-    function mysstore_header_logos_marcas(){
-
-        ?>
-
-        <div class="navegacion-marcas">
-
-            <ul>
-
-        <?php
-
-        $terms_data_by = wp_get_nav_menu_items(get_term(mysstore_theme_get_nav("nav-marcas")));
-
-        /* Array vacio para adicionar los id de los items del menu en orden jerarquico */
-
-        $id_items = array();
-
-        /* Array vacio para adicionar los items completos en orden jerarquico */
-
-        $menu_nav_items = array();
-
-        /* Iteracion de items del menu */
-
-        foreach ( $terms_data_by as $value ):
-
-            if ( $value->object == "product_cat" ):
-
-                /* Funcion para obtener subcategorias del item tipo categoria */
-
-                $cats = mysstore_get_categories_product( $value->object_id );
-
-                /* Si se obtuvieron subcategorias */
-
-                if( count($cats) > 0 ):
-
-                    foreach ($cats as $cat):
-
-                        // Obtener link de la categoria
-
-                        $cat_link = get_category_link($cat->term_id);
-
-                        /* Obtener id de imagen de la linea */
-
-                        $id_atch = get_term_meta($cat->term_id, 'thumbnail_id', true);
-
-                        /* Obtener url de imagen de la linea */
-
-                        $img = wp_get_attachment_url($id_atch);
+                        else :
 
                         ?>
 
-                            <li id="<?php echo esc_attr( $cat->term_id ); ?>" class="item-menu-categorias-header">
+                            <li id="item-<?php echo esc_attr($item_nav[1]["ID"]); ?>" class="menu-item item-parent">
 
-                                <script>
+                                <div class="span-item-parent">
 
-                                    if (jQuery(window).width() >= 700){
+                                    <span><?php echo esc_html($item_nav[1]["title"]); ?></span>
 
-                                        jQuery('<a href="<?php echo esc_url( $cat_link ); ?>"><img src="<?php echo $img; ?>" alt="<?php echo $cat->slug; ?>" style="height: 40px;"></a>').prependTo('li#<?php echo $cat->term_id; ?>');
+                                </div>
 
-                                    }
-
-                                </script>
-
-                                <ul class="sub-menu-item-categorias-header">
+                                <ul class="sub-menu-item">
 
                                     <?php
 
-                                    $sub_cats = mysstore_get_categories_product($cat->term_id);
+                                    foreach ($item_nav[2] as $sub_item) :
 
-                                    foreach($sub_cats as $sub_cat):
+                                    ?>
 
-                                        // Obtener link de la categoria
+                                        <li id="item-<?php echo esc_attr($sub_item["ID"]); ?>" class="menu-item item-no-child">
 
-                                        $cat_link = get_category_link( $sub_cat->term_id );
-
-                                        /* Obtener id de imagen de la linea */
-
-                                        $id_atch = get_term_meta( $sub_cat->term_id, 'thumbnail_id', true );
-
-                                        /* Obtener url de imagen de la linea */
-
-                                        $img = wp_get_attachment_url( $id_atch );
-
-                                        ?>
-
-                                        <li id="linea-<?php echo esc_attr( $sub_cat->term_id ); ?>">
-
-                                            <a href="<?php echo esc_url( $cat_link ); ?>">
-
-                                                <div class="item-menu-marcas-linea">
-
-                                                    <div class="img-linea">
-
-                                                        <script>
-
-                                                            if (jQuery(window).width() >= 700){
-
-                                                                jQuery('<img src="<?php echo $img; ?>" alt="<?php echo $sub_cat->slug; ?>">').prependTo('li#linea-<?php echo $sub_cat->term_id; ?> div.img-linea');
-
-                                                            }
-
-                                                        </script>
-
-                                                    </div>
-
-                                                    <div class="title-linea">
-
-                                                        <span><?php echo esc_html( $sub_cat->name ) ?></span>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </a>
+                                            <a href="<?php echo esc_attr($sub_item["url"]); ?>"><?php echo esc_html($sub_item["title"]); ?></a>
 
                                         </li>
 
-                                        <?php
+                                    <?php
+
+                                    endforeach;
+
+                                    foreach ($item_nav[3] as $sub_item) :
+
+                                        $cat_link = get_category_link($sub_item->term_id);
+
+                                    ?>
+
+                                        <li id="item-<?php echo esc_attr($sub_item->term_id); ?>" class="menu-item item-no-child">
+
+                                            <a href="<?php echo esc_attr($cat_link); ?>"><?php echo esc_html($sub_item->name); ?></a>
+
+                                        </li>
+
+                                    <?php
 
                                     endforeach;
 
@@ -736,403 +562,449 @@ if ( ! function_exists( 'mysstore_header_logos_marcas' ) ) {
 
                             </li>
 
-                        <?php
+                    <?php
+
+                        endif;
 
                     endforeach;
 
-                endif;
-
-            endif;
-
-        endforeach;
-
-        ?>
+                    ?>
 
                 </ul>
 
-            </div>
+            </nav>
 
-        <?php
+        </div>
+
+    <?php
 
     }
-
 }
 
-if ( ! function_exists( 'mystore_header_open_container_menu_cart' ) ) {
+if (!function_exists('mysstore_header_logos_marcas')) {
 
     /**
 
-     * 
+        * 
 
-     */
+        */
 
-    function mystore_header_open_container_menu_cart(){
+    function mysstore_header_logos_marcas()
+    {
 
-        ?>
+    ?>
+
+        <div class="navegacion-marcas">
+
+            <ul>
+
+                <?php
+
+                $terms_data_by = wp_get_nav_menu_items(get_term(mysstore_theme_get_nav("nav-marcas")));
+
+                /* Array vacio para adicionar los id de los items del menu en orden jerarquico */
+
+                $id_items = array();
+
+                /* Array vacio para adicionar los items completos en orden jerarquico */
+
+                $menu_nav_items = array();
+
+                /* Iteracion de items del menu */
+
+                foreach ($terms_data_by as $value) :
+
+                    if ($value->object == "product_cat") :
+
+                        /* Funcion para obtener subcategorias del item tipo categoria */
+
+                        $cats = mysstore_get_categories_product($value->object_id);
+
+                        /* Si se obtuvieron subcategorias */
+
+                        if (count($cats) > 0) :
+
+                            foreach ($cats as $cat) :
+
+                                // Obtener link de la categoria
+
+                                $cat_link = get_category_link($cat->term_id);
+
+                                /* Obtener id de imagen de la linea */
+
+                                $id_atch = get_term_meta($cat->term_id, 'thumbnail_id', true);
+
+                                /* Obtener url de imagen de la linea */
+
+                                $img = wp_get_attachment_url($id_atch);
+
+                ?>
+
+                                <li id="<?php echo esc_attr($cat->term_id); ?>" class="item-menu-categorias-header">
+
+                                    <script>
+                                        if (jQuery(window).width() >= 700) {
+
+                                            jQuery('<a href="<?php echo esc_url($cat_link); ?>"><img src="<?php echo $img; ?>" alt="<?php echo $cat->slug; ?>" style="height: 40px;"></a>').prependTo('li#<?php echo $cat->term_id; ?>');
+
+                                        }
+                                    </script>
+
+                                    <ul class="sub-menu-item-categorias-header">
+
+                                        <?php
+
+                                        $sub_cats = mysstore_get_categories_product($cat->term_id);
+
+                                        foreach ($sub_cats as $sub_cat) :
+
+                                            // Obtener link de la categoria
+
+                                            $cat_link = get_category_link($sub_cat->term_id);
+
+                                            /* Obtener id de imagen de la linea */
+
+                                            $id_atch = get_term_meta($sub_cat->term_id, 'thumbnail_id', true);
+
+                                            /* Obtener url de imagen de la linea */
+
+                                            $img = wp_get_attachment_url($id_atch);
+
+                                        ?>
+
+                                            <li id="linea-<?php echo esc_attr($sub_cat->term_id); ?>">
+
+                                                <a href="<?php echo esc_url($cat_link); ?>">
+
+                                                    <div class="item-menu-marcas-linea">
+
+                                                        <div class="img-linea">
+
+                                                            <script>
+                                                                if (jQuery(window).width() >= 700) {
+
+                                                                    jQuery('<img src="<?php echo $img; ?>" alt="<?php echo $sub_cat->slug; ?>">').prependTo('li#linea-<?php echo $sub_cat->term_id; ?> div.img-linea');
+
+                                                                }
+                                                            </script>
+
+                                                        </div>
+
+                                                        <div class="title-linea">
+
+                                                            <span><?php echo esc_html($sub_cat->name) ?></span>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </a>
+
+                                            </li>
+
+                                        <?php
+
+                                        endforeach;
+
+                                        ?>
+
+                                    </ul>
+
+                                </li>
+
+                <?php
+
+                            endforeach;
+
+                        endif;
+
+                    endif;
+
+                endforeach;
+
+                ?>
+
+            </ul>
+
+        </div>
+
+    <?php
+
+    }
+}
+
+if (!function_exists('mystore_header_open_container_menu_cart')) {
+
+    /**
+
+        * 
+
+        */
+
+    function mystore_header_open_container_menu_cart()
+    {
+
+    ?>
 
         <div class="container-menu-buscador">
 
         <?php
 
     }
-
 }
 
-if ( ! function_exists( 'mystore_header_close_container_menu_cart' ) ) {
+if (!function_exists('mystore_header_close_container_menu_cart')) {
 
     /**
      * 
      */
-    function mystore_header_close_container_menu_cart(){
+    function mystore_header_close_container_menu_cart()
+    {
 
         ?>
 
         </div>
 
-        <?php
+    <?php
 
     }
-
 }
 
 /**
  * Funciones del footer
  */
 
-if ( ! function_exists( 'mysstore_footer_politicas' ) ) {
+if (!function_exists('mysstore_footer_open_container')) {
 
-    /**
-     * 
-     */
-    function mysstore_footer_politicas(){
-
-        ?>
-
-        <div class="terminos-legales">
-
-            <ul>
-
-                <li>
-
-                    <a href="https://www.motosyservitecas.com/wp-content/uploads/2019/03/POLITICA-DE-PRIVACIDAD-MOTOS-Y-SERVITECAS.pdf" target="_blank">Política de privacidad</a>
-
-                </li>
-
-                <li>
-
-                    <a href="https://www.motosyservitecas.com/wp-content/uploads/2019/03/POLITICAS-DE-COMPRA-MOTOS-Y-SERVITECAS.pdf" target="_blank">Políticas de compra</a>
-
-                </li>
-
-                <li>
-
-                    <a href="https://www.motosyservitecas.com/wp-content/uploads/2019/03/TERMINOS-Y-CONDICIONES-MOTOS-Y-SERVITECAS.pdf" target="_blank">Términos y condiciones</a>
-
-                </li>
-
-            </ul>
-
-        </div>
-
-        <?php
-
+    function mysstore_footer_open_container()
+    {
+        echo '<div class="footer-container-inside">';
     }
-
 }
 
-if ( ! function_exists( 'mysstore_footer_creditos' ) ) {
+if (!function_exists('mysstore_footer_close_container')) {
 
-    /**
-     * 
-     */
-    function mysstore_footer_creditos(){
-
-        ?>
-
-        <div class="credits-web-copy">
-
-            <p>© Copyright <?php echo date('Y') ?> Motos & Servitecas</p>
-
-        </div>
-
-        <?php
-
+    function mysstore_footer_close_container()
+    {
+        echo "</div>";
     }
-
 }
 
-if ( ! function_exists( 'mysstore_footer_open_widget' ) ) {
-
-    /**
-     * 
-     */
-    function mysstore_footer_open_widget(){
-
-        ?>
-
-        <div class="footer-container-widget-social">
-
-            <div class="widget-footer-container">
-
-        <?php
-
-    }
-
-}
-
-if ( ! function_exists( 'mysstore_footer_close_widget' ) ) {
-
-    /**
-     * 
-     */
-    function mysstore_footer_close_widget(){
-
-        ?>
-
-        </div>
-
-        <?php
-
-    }
-
-}
-
-if ( ! function_exists( 'mysstore_footer_widgets' ) ) {
-
-    /**
-     * 
-     */
-
-    function mysstore_footer_widgets() {
-
-		$rows    = intval( apply_filters( 'storefront_footer_widget_rows', 1 ) );
-
-		$regions = intval( apply_filters( 'storefront_footer_widget_columns', 4 ) );
-
-
-
-		for ( $row = 1; $row <= $rows; $row++ ) :
-
-
-
-			// Defines the number of active columns in this footer row.
-
-			for ( $region = $regions; 0 < $region; $region-- ) {
-
-				if ( is_active_sidebar( 'footer-' . esc_attr( $region + $regions * ( $row - 1 ) ) ) ) {
-
-					$columns = $region;
-
-					break;
-
-				}
-
-			}
-
-
-
-			if ( isset( $columns ) ) :
-
-				?>
-
-				<div class=<?php echo '"row-footer-widgets row-widget-' . esc_attr( $row ) . ' colum-' . esc_attr( $columns ) . '"'; ?>>
-
-				<?php
-
-				for ( $column = 1; $column <= $columns; $column++ ) :
-
-					$footer_n = $column + $regions * ( $row - 1 );
-
-
-
-					if ( is_active_sidebar( 'footer-' . esc_attr( $footer_n ) ) ) :
-
-						?>
-
-					<div class="colum-widget col-widget-<?php echo esc_attr( $column ); ?>">
-
-						<?php dynamic_sidebar( 'footer-' . esc_attr( $footer_n ) ); ?>
-
-					</div>
-
-						<?php
-
-					endif;
-
-				endfor;
-
-				?>
-
-			</div><!-- .footer-widgets.row-<?php echo esc_attr( $row ); ?> -->
-
-				<?php
-
-				unset( $columns );
-
-			endif;
-
-		endfor;
-
-	}
-
-}
-
-if ( ! function_exists( 'mysstore_footer_menu_redes_sociales' ) ) {
-
-    /**
-     * 
-     */
-    function mysstore_footer_menu_redes_sociales(){
-
-        ?>
-
-            <div class="footer-social-media">
-
-                <nav class="nav-icons-social">
-
-                    <ul>
-
-                    <?php
-
-                    $terms_data_by = wp_get_nav_menu_items(get_term(mysstore_theme_get_nav("nav-social")));
-
-                    if($terms_data_by):
-                        foreach( $terms_data_by as $item ):
-
-                            ?>
-
-                            <li class="item-menu-social">
-
-                                <a id="<?php echo esc_attr( $item->title ); ?>" href="<?php echo esc_url( $item->url ); ?>"></a>
-
-                            </li>
-
-                            <?php
-
-                        endforeach;
-                    endif;
-                    ?>
-
-                    </ul>
-
-                </nav>
-
-            </div>
-
-        </div>
-
-        <?php
-
-    }
-
-}
-
-if ( ! function_exists( 'mysstore_footer_button_top' ) ) {
+if (!function_exists('mysstore_footer_button_top')) {
 
     /**
      * Funcion para boton top 
      */
-    function mysstore_footer_button_top(){
-
+    function mysstore_footer_button_top()
+    {
         ?>
-
         <div class="button-top-page">
-
             <a href="#masthead">
-
             </a>
-
         </div>
-        
         <div class="wht-contact">
-
-            <div class="logo-wht">
-
-                <a href="https://api.whatsapp.com/send?phone=573114485265&text=Hola" target="_blank">
-
-                    <div class="img-whatsapp"></div>
-
-                </a>
-
+            <div class="wht-chat-box">
+                <div class="wht-toolbar">
+                    <span>Contacto por WhatsApp</span>
+                    <i class="fas fa-times" id="closeChat"></i>
+                </div>
+                <div class="wht-chat-content">
+                    <div class="contact-group">
+                        <i class="fas fa-map-marker-alt"></i>Bogotá
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://wa.me/+573123314836" target="_blank">
+                            <i class="fas fa-user"></i> Partes: 312 331 4836
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://wa.me/+573114485265" target="_blank">
+                            <i class="fas fa-user"></i> Accesorios: 311 448 5265
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://wa.me/+573115807383" target="_blank">
+                            <i class="fas fa-user"></i> Servicio técnico: 311 580 7383
+                        </a>
+                    </div>
+                    <div class="contact-group">
+                        <i class="fas fa-map-marker-alt"></i>Medellín
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://wa.me/+573147096994" target="_blank">
+                            <i class="fas fa-user"></i> Partes y Accesorios: 314 709 6994
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://wa.me/+573147099539" target="_blank">
+                            <i class="fas fa-user"></i> Servicio técnico: 314 709 9539
+                        </a>
+                    </div>
+                </div>
             </div>
-
+            <div class="wht-icon">
+                <i class="fab fa-whatsapp"></i>
+            </div>
         </div>
-
         <?php
-
     }
-
 }
 
-/**
-
- * Funciones del inicio e-commerce
-
- */
-
-if ( ! function_exists( 'mysstore_inicio_marcas_partners' ) ) {
+if (!function_exists('mysstore_footer_all_content')) {
 
     /**
-
      * 
-
      */
+    function mysstore_footer_all_content()
+    {
+        ?>  
+        <div class="content-top-footer">
+            <div class="left-item"></div>
+            <div class="logo-item-footer">
+                <?php echo get_custom_logo(); ?>
+            </div>
+            <div class="right-item"></div>
+        </div>
+        <div class="content-main-footer">
+            <div class="footer-content-info">
+                <div class="col-1 col-footer-content-info">
+                    <span>Informaci&oacute;n General</span>
+                    <ul>
+                        <li><a href="https://motosyservitecas.com/empresa/">Sobre nosotros</a></li>
+                        <li><a href="https://motosyservitecas.com/sentido-social/">Responsabilidad social</a></li>
+                        <li><a href="https://motosyservitecas.com/secciones/blog/">Blog</a></li>
+                        <li><a href="https://motosyservitecas.com/nuestras-sedes/">Nuestras sedes</a></li>
+                    </ul>
+                </div>
+                <div class="col-2 col-footer-content-info">
+                    <span>Servicio al Cliente</span>
+                    <ul>
+                        <li><a href="https://motosyservitecas.com/categoria-producto/venta-usadas/">Venta de usadas</a></li>
+                        <li><a href="https://motosyservitecas.com/nuestros-distribuidores/">Nuestros distribuidores</a></li>
+                        <li><a href="https://forms.gle/iRdvM2BQoeCe5MpZ9">Quiero ser distribuidor</a></li>
+                        <li><a href="https://motosyservitecas.com/categoria-producto/productos-en-oferta/">Outlet</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-content-pays-social">
+                <div class="content-pay-methods">
+                    <div class="pay-method">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
+                    </div>
+                    <div class="pay-method">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="MasterCard">
+                    </div>
+                    <div class="pay-method">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/180px-American_Express_logo_%282018%29.svg.png" alt="American Express">
+                    </div>
+                    <div class="pay-method">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Diners_Club_Logo3.svg/320px-Diners_Club_Logo3.svg.png" alt="Diners Club">
+                    </div>
+                    <div class="pay-method">
+                        <img src="https://seeklogo.com/images/P/pse-logo-B9F0EF77DD-seeklogo.com.png" alt="PSE">
+                    </div>
+                </div>
+                <div class="content-social-icons">
+                    <span>Síguenos en redes:</span>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/motosyservitecasdecolombia/" target="_blank" class="fab fa-facebook"></a>
+                        <a href="https://www.instagram.com/motosyservitecasdecolombia/" target="_blank" class="fab fa-instagram"></a>
+                        <a href="https://www.youtube.com/user/MOTOSYSERVITECAS" target="_blank" class="fab fa-youtube"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-bottom-footer">
+            <ul>
+                <li class="credits-web-copy"><p>© COPYRIGHT <?php echo date('Y') ?> MOTOS & SERVITECAS ALL RIGHTS RESERVED</p></li>
+                <li>
+                    <a href="https://www.motosyservitecas.com/wp-content/uploads/2019/03/POLITICA-DE-PRIVACIDAD-MOTOS-Y-SERVITECAS.pdf" target="_blank">POL&Iacute;TICA DE PRIVACIDAD</a>
+                </li>
+                <li>
+                    <a href="https://www.motosyservitecas.com/wp-content/uploads/2019/03/POLITICAS-DE-COMPRA-MOTOS-Y-SERVITECAS.pdf" target="_blank">POL&Iacute;TICAS DE COMPRA</a>
+                </li>
+                <li>
+                    <a href="https://www.motosyservitecas.com/wp-content/uploads/2019/03/TERMINOS-Y-CONDICIONES-MOTOS-Y-SERVITECAS.pdf" target="_blank">T&Eacute;RMINOS Y CONDICIONES</a>
+                </li>
+            </ul>
+        </div>
 
-    function mysstore_inicio_marcas_partners(){
+    <?php
+
+    }
+}
+
+        /**
+
+         * Funciones del inicio e-commerce
+
+         */
+
+        if (!function_exists('mysstore_inicio_marcas_partners')) {
+
+            /**
+
+             * 
+
+             */
+
+            function mysstore_inicio_marcas_partners()
+            {
 
         ?>
-        <section class="section-partners-icons-site section-productos-inicio-ecommerce">
-            <div class="titulo-section-inicio">
-                <h3><?php echo wp_kses_post( "NUESTRAS MARCAS / PARTNERS" ); ?></h3>
-            </div>
-            
-            <div class="marcas-partners-icons">   
-                <ul><?php
-                    $return_cats = get_terms(array(
-            
-                        'taxonomy'      => 'marcas',
-                        'hide_empty'    => false,
-            
-                    ));
-            
-                    foreach ($return_cats as $value) {
-            
-                        $logo_id = get_term_meta( $value->term_id, 'marca-logo-id', true );
-            
-                        if ( $logo_id ) {
-                            $image = wp_get_attachment_url( $logo_id );
-                        } else {
-                            $image = wc_placeholder_img_src();
-                        }
-            
-                        $image = str_replace( ' ', '%20', $image );
-            
-                        $link = get_term_link($value->term_id, 'marcas');
+            <section class="section-partners-icons-site section-productos-inicio-ecommerce">
+                <div class="titulo-section-inicio">
+                    <h3><?php echo wp_kses_post("NUESTRAS MARCAS / PARTNERS"); ?></h3>
+                </div>
+
+                <div class="marcas-partners-icons">
+                    <ul><?php
+                        $return_cats = get_terms(array(
+
+                            'taxonomy'      => 'marcas',
+                            'hide_empty'    => false,
+
+                        ));
+
+                        foreach ($return_cats as $value) {
+
+                            $logo_id = get_term_meta($value->term_id, 'marca-logo-id', true);
+
+                            if ($logo_id) {
+                                $image = wp_get_attachment_url($logo_id);
+                            } else {
+                                $image = wc_placeholder_img_src();
+                            }
+
+                            $image = str_replace(' ', '%20', $image);
+
+                            $link = get_term_link($value->term_id, 'marcas');
 
                         ?>
-                        <li class="item-marcas">
-                            <a href="<?php echo esc_url($link); ?>">
-                                <img src="<?php echo esc_url($image); ?>" alt="<?php echo $value->slug; ?>" height="150px">
-                            </a>
-                        </li>
+                            <li class="item-marcas">
+                                <a href="<?php echo esc_url($link); ?>">
+                                    <img src="<?php echo esc_url($image); ?>" alt="<?php echo $value->slug; ?>" height="150px">
+                                </a>
+                            </li>
                         <?php
-                    }?>
-                </ul>
-            </div>
-        </section>
+                        } ?>
+                    </ul>
+                </div>
+            </section>
         <?php
-    }
-}
+            }
+        }
 
-if ( ! function_exists( 'mysstore_add_slider_comercial' ) ) {
+        if (!function_exists('mysstore_add_slider_comercial')) {
 
-    /**
+            /**
 
-     * 
+             * 
 
-     */
+             */
 
-    function mysstore_add_slider_comercial(){
+            function mysstore_add_slider_comercial()
+            {
 
         ?>
 
@@ -1150,9 +1022,9 @@ if ( ! function_exists( 'mysstore_add_slider_comercial' ) ) {
 
                 $avisos = new WP_Query($args);
 
-                if($avisos):?>
+                if ($avisos) : ?>
 
-                    <div class="slider shop-slider">
+                <div class="slider shop-slider">
 
                     <div class="slick-prev-arrow slick-arrow" href=""><i class="fas fa-chevron-left"></i></div>
 
@@ -1160,17 +1032,17 @@ if ( ! function_exists( 'mysstore_add_slider_comercial' ) ) {
 
                     $inc = 1;
 
-                    while($avisos->have_posts()): $avisos->the_post();
+                    while ($avisos->have_posts()) : $avisos->the_post();
 
                     ?>
 
-                    <div class="slider-item" id="aviso-<?php echo esc_attr( $inc ); ?>">
+                        <div class="slider-item" id="aviso-<?php echo esc_attr($inc); ?>">
 
-                        <?php
+                            <?php
 
                             $url_aviso = get_field('enlace');
 
-                            $id_img_aviso_phone = get_field('imagen_banner_phone'); 
+                            $id_img_aviso_phone = get_field('imagen_banner_phone');
 
                             $img_aviso_phone = wp_get_attachment_image_src($id_img_aviso_phone, 'full')[0];
 
@@ -1178,163 +1050,156 @@ if ( ! function_exists( 'mysstore_add_slider_comercial' ) ) {
 
                             $img_aviso = wp_get_attachment_image_src($id_img_aviso, 'full')[0];
 
-                        ?>
+                            ?>
 
-                        <a href="<?php echo $url_aviso; ?>">
+                            <a href="<?php echo $url_aviso; ?>">
 
-                            <span data-sliderl="<?php echo esc_attr($img_aviso); ?>" data-sliders="<?php echo esc_attr($img_aviso_phone); ?>"></span>
+                                <span data-sliderl="<?php echo esc_attr($img_aviso); ?>" data-sliders="<?php echo esc_attr($img_aviso_phone); ?>"></span>
 
-                        </a>
+                            </a>
 
-                    </div>
+                        </div>
 
                     <?php
 
-                    $inc += 1;
+                        $inc += 1;
 
                     endwhile;
 
                     wp_reset_postdata();
 
                     ?>
-    
+
                     <div class="slick-next-arrow slick-arrow" href=""><i class="fas fa-chevron-right"></i></div>
 
-                    </div>
+                </div>
 
-                    <?php
+            <?php
 
                 endif;
 
-                ?>
+            ?>
 
         <?php
 
-    }
+            }
+        }
 
-}
+        if (!function_exists('mysstore_get_the_content_page')) {
 
-if ( ! function_exists( 'mysstore_get_the_content_page' ) ) {
+            /**
 
-    /**
+             * 
 
-     * 
+             */
 
-     */
+            function mysstore_get_the_content_page()
+            {
 
-    function mysstore_get_the_content_page(){
+                if (have_posts()) :
 
-        if ( have_posts() ): 
+                    while (have_posts()) : the_post();
 
-            while ( have_posts() ): the_post();
+                        echo the_content();
 
-                echo the_content();
+                    endwhile;
 
-            endwhile;
+                endif;
+            }
+        }
+        /**
 
-        endif;
+         * Funciones para landing page template
 
-    }
+         */
 
-}
-/**
+        if (!function_exists('mysstore_banner_landing_page')) {
 
- * Funciones para landing page template
+            /**
 
- */
+             * Funcion para banner principal
 
-if ( ! function_exists( 'mysstore_banner_landing_page' ) ) {
+             */
 
-    /**
+            function mysstore_banner_landing_page()
+            {
 
-     * Funcion para banner principal
+                $img_banner_grande = gettype(wp_get_attachment_image_src(get_field('banner_grande'), 'full')) == "array" ? wp_get_attachment_image_src(get_field('banner_grande'), 'full')[0] : "";
 
-     */
-
-    function mysstore_banner_landing_page(){
-
-        $img_banner_grande = gettype(wp_get_attachment_image_src( get_field( 'banner_grande' ), 'full' )) == "array" ? wp_get_attachment_image_src( get_field( 'banner_grande' ), 'full' )[0] : "";
-
-        $img_banner_small = gettype(wp_get_attachment_image_src( get_field( 'banner_small' ), 'full' )) == "array" ? wp_get_attachment_image_src( get_field( 'banner_small' ), 'full' )[0] : "";
+                $img_banner_small = gettype(wp_get_attachment_image_src(get_field('banner_small'), 'full')) == "array" ? wp_get_attachment_image_src(get_field('banner_small'), 'full')[0] : "";
 
         ?>
 
-        <div class="banner-page">
+            <div class="banner-page">
 
-            <script>
+                <script>
+                    if (jQuery(window).width() >= 700) {
 
-                if (jQuery(window).width() >= 700){
+                        jQuery('<img src="<?php echo esc_attr($img_banner_grande); ?>" alt="img_banner">').prependTo('div.banner-page');
 
-                    jQuery( '<img src="<?php echo esc_attr( $img_banner_grande ); ?>" alt="img_banner">' ).prependTo( 'div.banner-page' );
+                    } else {
 
-                }else{
+                        jQuery('<img src="<?php echo esc_attr($img_banner_small); ?>" alt="img_banner_phone">').prependTo('div.banner-page');
 
-                    jQuery( '<img src="<?php echo esc_attr( $img_banner_small ); ?>" alt="img_banner_phone">' ).prependTo( 'div.banner-page' );
+                    }
+                </script>
 
-                }
-
-            </script>
-
-        </div>
+            </div>
 
         <?php
 
-    }
+            }
+        }
 
-}
+        if (!function_exists('mysstore_banner_explorar_tienda')) {
 
-if ( ! function_exists( 'mysstore_banner_explorar_tienda' ) ) {
+            /**
 
-    /**
+             * Funcion para banner de explorar tienda
 
-     * Funcion para banner de explorar tienda
+             */
 
-     */
+            function mysstore_banner_explorar_tienda()
+            {
 
-    function mysstore_banner_explorar_tienda(){
+                $img_banner_exp_grande = gettype(wp_get_attachment_image_src(get_field('banner_explorar_tienda_grande'), 'full')) == "array" ? wp_get_attachment_image_src(get_field('banner_explorar_tienda_grande'), 'full')[0] : "";
 
-        $img_banner_exp_grande = gettype(wp_get_attachment_image_src( get_field( 'banner_explorar_tienda_grande' ), 'full' )) == "array" ? wp_get_attachment_image_src( get_field( 'banner_explorar_tienda_grande' ), 'full' )[0] : "";
+                $img_banner_exp_small = gettype(wp_get_attachment_image_src(get_field('banner_explorar_tienda_small'), 'full')) == "array" ? wp_get_attachment_image_src(get_field('banner_explorar_tienda_small'), 'full')[0] : "";
 
-        $img_banner_exp_small = gettype(wp_get_attachment_image_src( get_field( 'banner_explorar_tienda_small' ), 'full' )) == "array" ? wp_get_attachment_image_src( get_field( 'banner_explorar_tienda_small' ), 'full' )[0] : "";
-
-        $url_explorar_tienda = get_field( 'url_explorar_tienda' );
+                $url_explorar_tienda = get_field('url_explorar_tienda');
 
         ?>
 
-        <div class="banner-explorar-tienda">
+            <div class="banner-explorar-tienda">
 
-            <a href="<?php echo esc_url( $url_explorar_tienda ); ?>"></a>
+                <a href="<?php echo esc_url($url_explorar_tienda); ?>"></a>
 
-            <script>
+                <script>
+                    if (jQuery(window).width() >= 700) {
 
-                if (jQuery(window).width() >= 700){
+                        jQuery('<img src="<?php echo esc_attr($img_banner_exp_grande); ?>" alt="img_banner_explorar">').prependTo('div.banner-explorar-tienda a');
 
-                    jQuery( '<img src="<?php echo esc_attr( $img_banner_exp_grande ); ?>" alt="img_banner_explorar">' ).prependTo( 'div.banner-explorar-tienda a' );
+                    } else {
 
-                }else{
+                        jQuery('<img src="<?php echo esc_attr($img_banner_exp_small); ?>" alt="img_banner_explorar_phone">').prependTo('div.banner-explorar-tienda a');
 
-                    jQuery( '<img src="<?php echo esc_attr( $img_banner_exp_small ); ?>" alt="img_banner_explorar_phone">' ).prependTo( 'div.banner-explorar-tienda a' );
+                    }
+                </script>
 
-                }
+            </div>
 
-            </script>
+    <?php
 
-        </div>
+            }
+        }
 
-        <?php
+        if (!function_exists('')) {
 
-    }
+            /**
 
-}
+             * 
 
-if ( ! function_exists( '' ) ) {
+             */
+        }
 
-    /**
-
-     * 
-
-     */
-
-}
-
-?>
+    ?>

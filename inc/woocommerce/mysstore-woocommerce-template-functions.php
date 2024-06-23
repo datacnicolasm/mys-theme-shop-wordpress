@@ -1,11 +1,11 @@
 <?php
 
+require 'mysstore-woocommerce-functions-filtros-landing-page.php';
+require 'mysstore-woocommerce-functions-filtros.php';
+
 /**
-
  * Funciones de header
-
  */
-
 if (!function_exists('mysstore_cart_link')) {
 
     /**
@@ -17,7 +17,7 @@ if (!function_exists('mysstore_cart_link')) {
     function mysstore_cart_link()
     {
 
-?>
+        ?>
 
         <a class="carrito-compras-link" href="<?php echo esc_url(wc_get_cart_url()); ?>">
 
@@ -74,11 +74,8 @@ if (!function_exists('mysstore_carrito_compras')) {
 }
 
 /**
-
  * Funciones de pagina de inicio e-commerce
-
  */
-
 if (!function_exists('mysstore_productos_nuevos')) {
 
     /**
@@ -107,10 +104,6 @@ if (!function_exists('mysstore_productos_nuevos')) {
                 'class'     =>  'productos-nuevos'
             );
             mysstore_inicio_ecommerce_section_open($args);
-            /*echo '<div class="pruebas">';
-            echo '<div id="pruebas-anime">';
-            echo '</div>';
-            echo '</div>';*/
             do_action('mysstore_carrusel_products_tienda', $args);
             mysstore_inicio_ecommerce_section_close();
         }
@@ -381,6 +374,77 @@ if (!function_exists('mysstore_wc_destacados_products')) {
 }
 
 /**
+ * Funcion parea fila de productos 1
+ */
+if (!function_exists('mysstore_wc_fila_inicio_products_1')) {
+    /**
+     * Funcion parea fila de productos 1
+     */
+    function mysstore_wc_fila_inicio_products_1()
+    {
+
+        $argsQuery = array(
+            'post_type'         =>  'product',
+            'post_status'       =>  'publish',
+            'posts_per_page'    =>  10,
+            'orderby'           =>  'date',
+            'order'             =>  'DESC'
+        );
+
+        $loop = new WP_Query($argsQuery);
+
+        if ($loop->have_posts()) {
+            $args = array(
+                'title'     =>  'titulo_productos_inicio_1',
+                'field'     =>  '',
+                'products'  =>  'fila-inicio-1',
+                'class'     =>  'productos-inicio-fila-1',
+                'product_cat' => 'categoria_productos_inicio_1'
+            );
+            mysstore_inicio_ecommerce_section_open($args);
+            do_action('mysstore_carrusel_products_tienda', $args);
+            mysstore_inicio_ecommerce_section_close();
+        }
+    }
+}
+
+/**
+ * Funcion parea fila de productos 2
+ */
+if (!function_exists('mysstore_wc_fila_inicio_products_2')) {
+
+    /**
+     * Funcion parea fila de productos 2
+     */
+    function mysstore_wc_fila_inicio_products_2()
+    {
+
+        $argsQuery = array(
+            'post_type'         =>  'product',
+            'post_status'       =>  'publish',
+            'posts_per_page'    =>  10,
+            'orderby'           =>  'date',
+            'order'             =>  'DESC'
+        );
+
+        $loop = new WP_Query($argsQuery);
+
+        if ($loop->have_posts()) {
+            $args = array(
+                'title'     =>  'titulo_productos_inicio_2',
+                'field'     =>  '',
+                'products'  =>  'fila-inicio-2',
+                'class'     =>  'productos-inicio-fila-2',
+                'product_cat' => 'categoria_productos_inicio_2'
+            );
+            mysstore_inicio_ecommerce_section_open($args);
+            do_action('mysstore_carrusel_products_tienda', $args);
+            mysstore_inicio_ecommerce_section_close();
+        }
+    }
+}
+
+/**
  * Funciones para landing page
  */
 
@@ -434,6 +498,7 @@ if (!function_exists('mysstore_wc_productos_categoria_promocion')) {
             wc_set_loop_prop('total_pages', $featured_products->max_num_pages);
 
             if ($featured_products) {
+                do_action('woocommerce_before_main_content');
                 do_action('woocommerce_before_shop_loop');
                 woocommerce_product_loop_start();
 
@@ -447,6 +512,7 @@ if (!function_exists('mysstore_wc_productos_categoria_promocion')) {
                 woocommerce_product_loop_end();
 
                 do_action('woocommerce_after_shop_loop');
+                do_action('woocommerce_after_main_content');
             } else {
                 do_action('woocommerce_no_products_found');
             }
@@ -704,6 +770,50 @@ if (!function_exists('mysstore_before_product_item_product')) {
                 );
             endif;
 
+            if ($args_function['products'] == 'fila-inicio-1') :
+
+                $product_cat = get_field($args_function['product_cat']);
+                $meta_query = WC()->query->get_meta_query();
+                $tax_query   = WC()->query->get_tax_query();
+                $tax_query[] = array(
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => $product_cat,
+                    'operator' => 'IN',
+                );
+                $args = array(
+                    'post_type'         =>  'product',
+                    'post_status'       =>  'publish',
+                    'posts_per_page'    =>  10,
+                    'orderby'           =>  'date',
+                    'order'             =>  'DESC',
+                    'meta_query'        =>  $meta_query,
+                    'tax_query'         =>  $tax_query,
+                );
+            endif;
+
+            if ($args_function['products'] == 'fila-inicio-2') :
+
+                $product_cat = get_field($args_function['product_cat']);
+                $meta_query = WC()->query->get_meta_query();
+                $tax_query   = WC()->query->get_tax_query();
+                $tax_query[] = array(
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => $product_cat,
+                    'operator' => 'IN',
+                );
+                $args = array(
+                    'post_type'         =>  'product',
+                    'post_status'       =>  'publish',
+                    'posts_per_page'    =>  10,
+                    'orderby'           =>  'date',
+                    'order'             =>  'DESC',
+                    'meta_query'        =>  $meta_query,
+                    'tax_query'         =>  $tax_query,
+                );
+            endif;
+
             $loop = new WP_Query($args);
 
             if ($loop->have_posts()) : while ($loop->have_posts()) : $loop->the_post();
@@ -809,8 +919,8 @@ if (!function_exists('mysstore_before_product_item_product')) {
          */
         function mysstore_single_product_primary_info_open()
         {
-    
-            ?><div class="info-main-product-page">
+
+    ?><div class="info-main-product-page">
 
             <?php
 
@@ -860,7 +970,6 @@ if (!function_exists('mysstore_before_product_item_product')) {
             if (get_field('tipo_producto')[0] == 'servicio' || $product->is_type('variable')) {
 
                 $price = apply_filters('woocommerce_empty_price_html', '', $product);
-
             } elseif ($product->is_on_sale() && $product->is_type('simple')) {
 
                 $regular_price = $product->get_regular_price();

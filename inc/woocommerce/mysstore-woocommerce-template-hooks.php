@@ -30,7 +30,17 @@ add_action( 'mysstore_header_content_ecommerce', 'mysstore_carrito_compras', 35 
 add_action( 'mysstore_inicio_ecommerce', 'mysstore_productos_nuevos', 20 ); // Ultimos productos de pagina de inicio
 add_action( 'mysstore_inicio_ecommerce', 'mysstore_wc_on_sale_products' , 30 ); // Productos en descuento de pagina de inicio
 add_action( 'mysstore_inicio_ecommerce', 'mysstore_wc_destacados_products' , 40 ); // Productos destacados de pagina de inicio
+add_action( 'mysstore_inicio_ecommerce', 'mysstore_wc_fila_inicio_products_1' , 50 );
+add_action( 'mysstore_inicio_ecommerce', 'mysstore_wc_fila_inicio_products_2' , 60 );
+
 add_action( 'mysstore_landing_page', 'mysstore_wc_productos_categoria_promocion', 20 ); // Funcion para obtener productos de categoria de promocion
+
+add_action( 'woocommerce_before_main_content', 'mysstore_open_filtro_archive_product', 0 );
+add_action( 'woocommerce_before_shop_loop', 'mysstore_filtro_archive_product', 5 );
+add_action( 'woocommerce_after_main_content', 'mysstore_close_filtro_archive_product', 90 );
+
+
+add_action( 'pre_get_posts', 'mysstore_modificar_consulta_principal_products'); // Agregar la función como un gancho para pre_get_posts
 
 /**
  * Template hooks del carrusel de productos

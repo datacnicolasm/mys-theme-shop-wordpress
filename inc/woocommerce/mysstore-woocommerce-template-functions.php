@@ -1,6 +1,7 @@
 <?php
 
 require 'mysstore-woocommerce-functions-filtros-landing-page.php';
+require 'mysstore-woocommerce-functions-landing-page.php';
 require 'mysstore-woocommerce-functions-filtros.php';
 
 /**

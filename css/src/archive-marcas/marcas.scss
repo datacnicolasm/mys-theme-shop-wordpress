@@ -1,0 +1,357 @@
+main.site-main {
+    .product-category-marca-theme {
+        ul.products {
+            display: none !important;
+        }
+
+        section {
+            margin-bottom: 1rem;
+
+            @media (min-width: 768px) {
+                margin-bottom: 2rem;
+            }
+
+            .title-section {
+                margin-bottom: 2rem;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+
+                i {
+                    font-size: 1.5rem;
+                    color: #cecece;
+                }
+
+                h2 {
+                    margin: 0;
+                    color: #484545;
+                    font-size: 1.5rem;
+                    margin-left: 1.5rem;
+                }
+            }
+        }
+
+        .description-marca {
+            box-sizing: border-box;
+            width: 100%;
+
+            p.description-cat {
+                text-align: justify;
+            }
+        }
+
+        .header-cat-marca {
+
+            .content-title-marca {
+                box-sizing: border-box;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                width: 100%;
+                margin-top: 1rem;
+                margin-bottom: 1.5rem;
+
+                .img-logo-marca {
+                    width: 20%;
+                    box-sizing: border-box;
+                    padding-right: 25px;
+                }
+
+                @media (min-width: 768px) {
+                    .img-logo-marca {
+                        width: 10%;
+                        box-sizing: border-box;
+                    }
+
+                    .title-marca {
+                        width: 90%;
+                    }
+                }
+
+                .title-marca {
+                    width: 80%;
+                    box-sizing: border-box;
+                    padding-left: 25px;
+                    border-left: 5px solid #484545;
+
+                    h1 {
+                        margin: 0;
+                        color: #484545;
+                    }
+
+                    .first {
+                        font-size: 2.5rem !important;
+                        font-family: "Anton", sans-serif;
+                        font-weight: 400;
+                        font-style: normal;
+                    }
+
+                    @media (min-width: 768px) {
+                        .second {
+                            font-size: 1.7rem !important;
+                            display: block !important;
+                        }
+                    }
+
+                    .second {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .highlighted-models {
+            @media (min-width: 768px) {
+                .models {
+                    height: 310px;
+                    max-height: 280px;
+                }
+            }
+
+            .models {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .background-item {
+                    display: none;
+                }
+
+                @media (min-width: 768px) {
+                    .background-item {
+                        background-color: #152235;
+                        width: 100%;
+                        height: 200px;
+                        margin: auto;
+                        display: block;
+                    }
+
+                    .articles-modelos {
+                        position: absolute;
+                        width: 70% !important;
+                        padding: 0 20px !important;
+                        flex-wrap: nowrap !important;
+                    }
+                }
+
+                .articles-modelos {
+                    width: 100%;
+                    padding: 0 10px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: stretch;
+                    flex-wrap: wrap;
+
+                    @media (min-width: 768px) {
+                        .modelo-marca-moto {
+                            overflow: hidden;
+                            width: 30% !important;
+                            margin-bottom: 0 !important;
+
+                            &:hover .img-modelo img {
+                                transform: scale(1.2);
+                            }
+                        }
+                    }
+
+                    .modelo-marca-moto {
+                        background-color: #fff;
+                        border: 1px solid #d0d0d0;
+                        border-radius: 5px;
+                        box-shadow: 2px 2px 3px rgba(47, 46, 46, 0.2);
+                        width: 100%;
+                        margin-bottom: 10px;
+
+                        @media (min-width: 768px) {
+                            .img-modelo {
+                                max-width: 100%;
+                                width: 100%;
+                                height: 210px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                img {
+                                    max-height: 100%;
+                                    transition: transform 0.5s ease;
+                                }
+                            }
+
+                            &:hover .text-name-modelo::after {
+                                width: 80%;
+                            }
+                        }
+
+                        .img-modelo {
+                            max-width: 100%;
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            img {
+                                max-height: 100%;
+                            }
+                        }
+
+                        .text-name-modelo {
+                            margin: 0;
+                            padding: 1rem 1.5rem;
+                            text-align: center;
+
+                            h3 {
+                                margin: 0;
+                                font-size: 1.2rem;
+                                font-weight: bold;
+                                text-align: center;
+                            }
+
+                            @media (min-width: 768px) {
+                                &::after {
+                                    background-color: #4e91f2;
+                                    content: "";
+                                    display: block;
+                                    height: 3px;
+                                    width: 0%;
+                                    border-radius: 5px;
+                                    margin: 5px auto;
+                                    transition: width 0.5s ease;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .marcas-destacadas {
+            @media (min-width: 768px) {
+                .marcas {
+                    flex-wrap: nowrap;
+
+                    .marca-producto-moto {
+                        width: 30% !important;
+                        max-width: 30% !important;
+                        margin-bottom: 0 !important;
+
+                        &:hover {
+                            box-shadow: 3px 3px 5px rgba(47, 46, 46, 0.4);
+                        }
+
+                        &:hover .img-logo-marca {
+                            transform: scale(1.2);
+                        }
+                    }
+                }
+            }
+
+            .marcas {
+                display: flex;
+                justify-content: space-between;
+                align-items: stretch;
+                flex-wrap: wrap;
+                width: 100%;
+
+                .marca-producto-moto {
+                    width: 100%;
+                    max-width: 100%;
+                    position: relative;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    box-shadow: 2px 2px 3px rgba(47, 46, 46, 0.2);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 10px;
+
+                    .img-back-marca {
+                        img {
+                            max-width: 100%;
+                        }
+                    }
+
+                    .img-logo-marca {
+                        background-color: #fff;
+                        border-bottom-right-radius: 10px;
+                        border-top-left-radius: 10px;
+                        box-sizing: border-box;
+                        overflow: hidden;
+                        padding: 5px 15px;
+                        position: absolute;
+                        width: 60%;
+                        transition: transform 0.5s ease;
+
+                        img {
+                            max-width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .all-models {
+            align-items: start;
+            display: flex;
+            justify-content: start;
+            flex-wrap: wrap;
+
+            @media (min-width: 768px){
+                .model-moto-page-marcas{
+                    width: 21% !important;
+                    margin: 2rem;
+
+                    &:hover {
+                        box-shadow: 2px 2px 3px rgba(15, 15, 15, 0.4);
+                    }
+    
+                    &:hover .img-modelo-marca img {
+                        transform: scale(1.2);
+                    }
+                }    
+            }
+
+            .model-moto-page-marcas {
+                border: 1px solid #c8c8c8;
+                box-sizing: border-box;
+                margin: 1rem;
+                width: 100%;
+                box-shadow: 2px 2px 3px rgba(15, 15, 15, 0.2);
+                border-radius: 7px;
+                overflow: hidden;
+
+                .img-modelo-marca {
+                    padding: 10px;
+                    width: 100%;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        max-width: 100%;
+                        transition: transform 0.5s ease;
+                    }
+                }
+
+                @media (min-width: 768px){
+                    .name-modelo-marca{
+                        width: 80% !important;    
+                    }    
+                }
+
+                .name-modelo-marca {
+                    background-color: #fff;
+                    padding: 5px;
+                    margin: 5px auto;
+                    width: 95%;
+                    border-top: solid 3px #152235;
+
+                    h3 {
+                        text-align: center;
+                        font-size: 1.2rem;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

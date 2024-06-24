@@ -4,6 +4,7 @@ function mys_scripts_styles()
 {
     // Estilo general
     wp_enqueue_style('styleGeneral', get_stylesheet_directory_uri() . '/css/build/main.min.css', array(), '1.0.0');
+    wp_enqueue_style('google-font', 'https://fonts.googleapis.com/css2?family=Anton&display=swap', false);
     
     // Script general
     wp_enqueue_script('hammerJS', "https://hammerjs.github.io/dist/hammer.min.js", array(), '2.0.8');
@@ -35,8 +36,3 @@ register_nav_menu("nav-social", "Menu de redes sociales"); //Menu de redes socia
  * Remover meta data de productos
  */
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
-/**
- * Duplicar descripcion de categoria
- */
-add_action('woocommerce_after_shop_loop', 'woocommerce_taxonomy_archive_description', 40);
-add_action('woocommerce_after_shop_loop', 'woocommerce_product_archive_description', 40);

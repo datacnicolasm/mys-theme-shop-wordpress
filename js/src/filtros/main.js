@@ -93,4 +93,9 @@ jQuery(document).ready(function ($) {
         const newURL = `${baseURL}?${urlParams.toString()}`;
         window.location.href = newURL;
     });
+
+    // Toggle filtros para celular
+    $('#toggle-filtros').on('click', function(){
+        $('.content-archive-productos').find('.filtros-tienda').toggle();
+    });
 });

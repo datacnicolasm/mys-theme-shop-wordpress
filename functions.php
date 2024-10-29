@@ -3,7 +3,8 @@
 function mys_scripts_styles()
 {
     // Estilo general
-    wp_enqueue_style('styleGeneral', get_stylesheet_directory_uri() . '/css/build/main.min.css', array(), '1.0.0');
+    //wp_enqueue_style('storefront-style', get_stylesheet_directory_uri() . '/style.css');
+    wp_enqueue_style('styleGeneral', get_stylesheet_directory_uri() . '/css/build/main.min.css', '1.0.0');
     wp_enqueue_style('google-font', 'https://fonts.googleapis.com/css2?family=Anton&display=swap', false);
     
     // Script general

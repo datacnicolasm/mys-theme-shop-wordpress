@@ -668,7 +668,7 @@ if (!function_exists('mysstore_before_product_item_product')) {
             <div class="sect-info-content">
                 <h2 class="product-nombre-referencia">
                     <a class="product-thumbnail-link" href="<?php echo get_permalink($product->get_id()); ?>">
-                        <?php echo substr($product->get_name(), 0, 55); ?>
+                        <?php echo substr($product->get_name(), 0, 40); ?>
                     </a>
                 </h2>
                 <?php

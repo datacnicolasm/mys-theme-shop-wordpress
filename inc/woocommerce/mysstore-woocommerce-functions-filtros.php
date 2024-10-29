@@ -652,6 +652,10 @@ if (!function_exists('mysstore_open_filtro_archive_product')) {
         ) { 
             ?>
             <div class="content-archive-productos">
+                <!-- Boton para filtro celular -->
+                <div class="btn-filtro">
+                    <button id="toggle-filtros">Ver Filtros</button>
+                </div>
                 <div class="filtros-tienda">
                     <div class="title-filtros">
                         <p>Filtrar por</p>

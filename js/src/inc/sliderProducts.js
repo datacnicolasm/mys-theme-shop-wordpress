@@ -51,7 +51,7 @@ function sliderProducts (selectorJs){
         });
 
         // Establecer altura para los productos del carrusel
-        $(selectCarrusel).children().height(Math.max(...heightSlider))
+        $(selectCarrusel).children().height(Math.max(...heightSlider)+20)
 
         // Agregar las flechas en el carrusel
         $(selectCarrusel).parent().prepend('<span class="slick-prev-arrow slick-arrow"><i class="fas fa-chevron-left"></i></span>')
